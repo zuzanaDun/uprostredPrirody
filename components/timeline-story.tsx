@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowDown,
   ArrowLeft,
-  ArrowRight,
+  ArrowUp,
   BookOpen,
   ChevronLeft,
   ChevronRight,
@@ -185,9 +185,8 @@ function EventCard({ event, index, onOpen }: { event: EventRecord; index: number
       <div className="event-copy">
         <div className="event-categories">{event.categories.map((category) => <span key={category}>{category}</span>)}</div>
         <h3>{event.title}</h3>
-        <p>{event.summary}</p>
+        <p className="event-summary">{event.summary}{isLong && <> <button className="read-story" onClick={() => onOpen(event)}>Čítaj ďalej...</button></>}</p>
         {!isLong && <p className="short-story">{event.story}</p>}
-        {isLong && <Button variant="link" className="read-story" onClick={() => onOpen(event)}>Prečítať celý príbeh <ArrowRight /></Button>}
       </div>
     </article>
   );
@@ -277,21 +276,18 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
       </section>
 
       <section id="pribeh" className="story-section" aria-labelledby="story-title">
-        <div className="section-heading"><div><p className="eyebrow dark"><span /> Cesta časom</p><h2 id="story-title">Ako miesto<br />postupne <em>rastie</em></h2></div><p>Každý bod na ceste je jedna spomienka. Vyberte si obdobie alebo nechajte príbeh plynúť.</p></div>
+        <div className="section-heading"><div><p className="eyebrow dark"><span /> Cesta časom</p><h2 id="story-title">Ako náš <strong>ROD</strong>ový statok<br />postupne <em>rastie</em></h2></div><p>Každý bod na ceste je jedna spomienka. Vyberte si obdobie alebo nechajte príbeh plynúť.</p></div>
 
         <div className="timeline-tools">
-          <div className="year-rail" aria-label="Rýchla navigácia podľa rokov">
-            <button className={year === 'all' ? 'active' : ''} onClick={() => setYear('all')}>Všetky roky</button>
-            {years.map((item) => <button key={item} className={year === item ? 'active' : ''} onClick={() => setYear(item)}>{item}</button>)}
-          </div>
-          <div className="filter-row">
-            <div className="select-wrap"><label>Mesiac</label><Select value={month} onValueChange={(value) => setMonth(String(value))}><SelectTrigger><SelectValue>{month === 'all' ? 'Všetky mesiace' : monthNames[Number(month) - 1]}</SelectValue></SelectTrigger><SelectContent><SelectItem value="all">Všetky mesiace</SelectItem>{monthNames.map((name, index) => <SelectItem key={name} value={String(index + 1)}>{name[0].toUpperCase() + name.slice(1)}</SelectItem>)}</SelectContent></Select></div>
-            <div className="select-wrap"><label>Poradie</label><Select value={order} onValueChange={(value) => setOrder(value as 'asc' | 'desc')}><SelectTrigger><SelectValue>{order === 'asc' ? 'Od najstarších' : 'Od najnovších'}</SelectValue></SelectTrigger><SelectContent><SelectItem value="asc">Od najstarších</SelectItem><SelectItem value="desc">Od najnovších</SelectItem></SelectContent></Select></div>
-            <Button variant="ghost" onClick={clearFilters} disabled={!hasFilters} className="clear-filters"><RotateCcw /> Zrušiť filtre</Button>
-          </div>
-          <div className="category-filter" aria-label="Filtrovať podľa kategórie">
-            <button className={category === 'all' ? 'active' : ''} onClick={() => setCategory('all')}><Leaf /> Všetko</button>
-            {categories.map(({ name, icon: Icon }) => <button key={name} className={category === name ? 'active' : ''} onClick={() => setCategory(name)}><Icon /> {name}</button>)}
+          <div className="filter-toolbar" aria-label="Filtrovanie príbehu">
+            <div className="filter-select"><Select value={year} onValueChange={(value) => setYear(String(value))}><SelectTrigger aria-label="Vybrať rok"><SelectValue>{year === 'all' ? 'Všetky roky' : year}</SelectValue></SelectTrigger><SelectContent><SelectItem value="all">Všetky roky</SelectItem>{years.map((item) => <SelectItem key={item} value={item}>{item}</SelectItem>)}</SelectContent></Select></div>
+            <div className="filter-select"><Select value={month} onValueChange={(value) => setMonth(String(value))}><SelectTrigger aria-label="Vybrať mesiac"><SelectValue>{month === 'all' ? 'Všetky mesiace' : monthNames[Number(month) - 1]}</SelectValue></SelectTrigger><SelectContent><SelectItem value="all">Všetky mesiace</SelectItem>{monthNames.map((name, index) => <SelectItem key={name} value={String(index + 1)}>{name[0].toUpperCase() + name.slice(1)}</SelectItem>)}</SelectContent></Select></div>
+            <button className="sort-toggle" onClick={() => setOrder((value) => value === 'asc' ? 'desc' : 'asc')} aria-label={order === 'asc' ? 'Zoradené od najstarších, prepnúť na najnovšie' : 'Zoradené od najnovších, prepnúť na najstaršie'} title={order === 'asc' ? 'Od najstarších' : 'Od najnovších'}>{order === 'asc' ? <ArrowDown /> : <ArrowUp />}</button>
+            <div className="category-filter" aria-label="Filtrovať podľa kategórie">
+              <button className={category === 'all' ? 'active' : ''} onClick={() => setCategory('all')}><Leaf /> Všetko</button>
+              {categories.map(({ name, icon: Icon }) => <button key={name} className={category === name ? 'active' : ''} onClick={() => setCategory(name)}><Icon /> {name}</button>)}
+            </div>
+            <button onClick={clearFilters} disabled={!hasFilters} className="clear-filters" aria-label="Zrušiť filtre" title="Zrušiť filtre"><RotateCcw /></button>
           </div>
         </div>
 
