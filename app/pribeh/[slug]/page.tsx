@@ -26,7 +26,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
   return (
     <main className="direct-story-page">
       <header className="direct-header">
-        <a className="brand" href="/" aria-label="Uprostred prírody – domov"><span className="brand-mark"><Leaf /></span><span>Uprostred prírody</span></a>
+        <a className="brand" href="/" aria-label="Uprostred prírody – domov"><span className="brand-mark"><Leaf /></span><span className="brand-copy"><small>Rodový statok</small><span>Uprostred prírody</span></span></a>
         <a className="back-link" href="/#pribeh"><ArrowLeft /> Späť na časovú os</a>
       </header>
       <EventStory event={event} standalone />

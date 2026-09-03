@@ -13,7 +13,6 @@ import {
   Copy,
   Hammer,
   Leaf,
-  MapPin,
   Pause,
   PawPrint,
   Play,
@@ -34,15 +33,17 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 import type { EventRecord, GalleryItem } from '@/lib/events';
 
 const categories = [
-  { name: 'Začiatky', icon: BookOpen },
-  { name: 'Domov a stavby', icon: Hammer },
-  { name: 'Záhrada a rastliny', icon: Sprout },
+  { name: 'Slameno-hlinený dom', icon: Hammer },
+  { name: 'Slamenno-hlinená chatka', icon: BookOpen },
+  { name: 'Záhrada', icon: Sprout },
+  { name: 'Plot', icon: RefreshCw },
   { name: 'Zvieratá', icon: PawPrint },
   { name: 'Rodina a život', icon: Users },
-  { name: 'Príroda počas roka', icon: Sun },
-  { name: 'Premeny miesta', icon: RefreshCw },
-  { name: 'Myšlienky a rozhodnutia', icon: Compass },
-  { name: 'Míľniky', icon: Star },
+  { name: 'Jazierko', icon: Sun },
+  { name: 'Iné stavby', icon: Compass },
+  { name: 'Rodový statok', icon: Leaf },
+  { name: 'Miľníky', icon: Star },
+  { name: 'Pribehy', icon: BookOpen },
 ];
 
 const monthNames = ['január', 'február', 'marec', 'apríl', 'máj', 'jún', 'júl', 'august', 'september', 'október', 'november', 'december'];
@@ -148,7 +149,7 @@ export function EventStory({ event, standalone = false }: { event: EventRecord; 
         <PlaceholderMedia src={event.coverImage} alt={`Titulná fotografia udalosti ${event.title}`} />
         <div className="detail-cover-shade" />
         <div className="detail-cover-copy">
-          <div className="detail-meta"><span>{event.category}</span>{event.featured && <span className="milestone-label"><Star fill="currentColor" /> Míľnik</span>}</div>
+          <div className="detail-meta"><div className="detail-categories">{event.categories.map((category) => <span key={category}>{category}</span>)}</div>{event.featured && <span className="milestone-label"><Star fill="currentColor" /> Míľnik</span>}</div>
           <h1>{event.title}</h1>
           <p>{formatDate(event, true)}{event.location ? ` · ${event.location}` : ''}</p>
         </div>
@@ -182,11 +183,10 @@ function EventCard({ event, index, onOpen }: { event: EventRecord; index: number
         <PlaceholderMedia src={event.coverImage} alt={`Titulná fotografia udalosti ${event.title}`} />
       </div>
       <div className="event-copy">
-        <p className="event-category">{event.category}</p>
+        <div className="event-categories">{event.categories.map((category) => <span key={category}>{category}</span>)}</div>
         <h3>{event.title}</h3>
         <p>{event.summary}</p>
         {!isLong && <p className="short-story">{event.story}</p>}
-        {event.location && <span className="event-location"><MapPin /> {event.location}</span>}
         {isLong && <Button variant="link" className="read-story" onClick={() => onOpen(event)}>Prečítať celý príbeh <ArrowRight /></Button>}
       </div>
     </article>
@@ -205,7 +205,7 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
   const previousUrl = useRef('/#pribeh');
 
   const years = useMemo(() => [...new Set(events.map((event) => event.date.slice(0, 4)))].sort(), [events]);
-  const filtered = useMemo(() => events.map((event, stableIndex) => ({ event, stableIndex })).filter(({ event }) => year === 'all' || event.date.startsWith(year)).filter(({ event }) => month === 'all' || String(new Date(`${event.date}T12:00:00`).getMonth() + 1) === month).filter(({ event }) => category === 'all' || event.category === category).sort((a, b) => { const result = a.event.date.localeCompare(b.event.date) || a.stableIndex - b.stableIndex; return order === 'asc' ? result : -result; }).map(({ event }) => event), [events, year, month, category, order]);
+  const filtered = useMemo(() => events.map((event, stableIndex) => ({ event, stableIndex })).filter(({ event }) => year === 'all' || event.date.startsWith(year)).filter(({ event }) => month === 'all' || String(new Date(`${event.date}T12:00:00`).getMonth() + 1) === month).filter(({ event }) => category === 'all' || event.categories.includes(category)).sort((a, b) => { const result = a.event.date.localeCompare(b.event.date) || a.stableIndex - b.stableIndex; return order === 'asc' ? result : -result; }).map(({ event }) => event), [events, year, month, category, order]);
   const activeEvent = filtered[currentIndex];
   const hasFilters = year !== 'all' || month !== 'all' || category !== 'all';
 
@@ -261,7 +261,7 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#zaciatok" aria-label="Uprostred prírody – domov"><span className="brand-mark"><Leaf aria-hidden="true" /></span><span>Uprostred prírody</span></a>
+        <a className="brand" href="#zaciatok" aria-label="Uprostred prírody – domov"><span className="brand-mark"><Leaf aria-hidden="true" /></span><span className="brand-copy"><small>Rodový statok</small><span>Uprostred prírody</span></span></a>
         <nav aria-label="Hlavná navigácia"><a className="nav-active" href="#pribeh">Príbeh statku</a><a href="#o-nas">O nás</a></nav>
       </header>
 
@@ -305,7 +305,7 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
         <div className="about-copy"><span>Dočasný obsah</span><p>Sme ľudia, ktorí si zvolili tvoriť miesto pre život bližšie k prírode. Tento text je pripravený na vaše vlastné slová – kto ste, čo pre vás rodový statok znamená a prečo chcete jeho premenu odovzdať ďalej.</p><p>Keď budete pripravení, nahraďte tento krátky úvod osobným príbehom v obsahu stránky.</p></div>
       </section>
 
-      <footer><a className="brand" href="#zaciatok"><span className="brand-mark"><Leaf /></span><span>Uprostred prírody</span></a><p>Príbeh miesta, ktoré tvoríme pre život.</p><a href="#zaciatok">Späť na začiatok ↑</a></footer>
+      <footer><a className="brand" href="#zaciatok"><span className="brand-mark"><Leaf /></span><span className="brand-copy"><small>Rodový statok</small><span>Uprostred prírody</span></span></a><p>Príbeh miesta, ktoré tvoríme pre život.</p><a href="#zaciatok">Späť na začiatok ↑</a></footer>
 
       {playerOpen && activeEvent && <aside className="story-player" aria-label="Automatické prehrávanie príbehu">
         <div className="player-top"><div><span>Príbeh sa prehráva</span><strong>{activeEvent.date.slice(0, 4)} · {activeEvent.title}</strong></div><Button variant="ghost" size="icon" onClick={() => { setPlayerOpen(false); setPlaying(false); }} aria-label="Ukončiť prehrávanie"><CircleStop /></Button></div>
