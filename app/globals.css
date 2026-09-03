@@ -149,7 +149,7 @@ h1 em, h2 em { color: #a88345; font-weight: 400; }
 .timeline-tools { position: sticky; top: 0; z-index: 20; max-width: 78rem; margin: 0 auto 2rem; padding: .65rem 0 1rem; border-bottom: 1px solid rgba(56,83,70,.08); background: linear-gradient(rgba(237,243,233,.97) 82%, rgba(237,243,233,0)); backdrop-filter: blur(10px); }
 .filter-toolbar { display: flex; align-items: center; gap: .45rem; max-width: 100%; overflow-x: auto; padding: .35rem .15rem .55rem; scrollbar-width: thin; }
 .filter-select { flex: 0 0 auto; }
-.filter-select [data-slot='select-trigger'] { min-width: 9.4rem; min-height: 2.45rem; border-color: rgba(54,83,69,.12); border-radius: 999px; background: rgba(255,255,255,.3); padding-inline: .85rem; font-size: .78rem; box-shadow: none; }
+.filter-select [data-slot='select-trigger'] { width: auto; min-width: 0; min-height: 2.45rem; border-color: rgba(54,83,69,.12); border-radius: 999px; background: rgba(255,255,255,.3); padding-inline: .72rem; font-size: .78rem; box-shadow: none; }
 .sort-toggle, .clear-filters { display: grid; place-items: center; width: 2.45rem; height: 2.45rem; flex: 0 0 auto; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #60736a; cursor: pointer; transition: background .2s, color .2s; }
 .sort-toggle:hover, .clear-filters:hover:not(:disabled) { background: rgba(39,82,65,.09); color: #244c3c; }
 .sort-toggle svg, .clear-filters svg { width: 1rem; height: 1rem; }
@@ -206,8 +206,8 @@ h1 em, h2 em { color: #a88345; font-weight: 400; }
 .about-section h2 { margin: 0; font-size: clamp(2.8rem,5vw,5.5rem); line-height: .98; letter-spacing: -.045em; }
 .about-section h2 em { color: #a88345; }
 .about-copy { position: relative; z-index: 2; max-width: 31rem; }
-.about-copy > span { display: inline-block; margin-bottom: 1rem; padding: .38rem .65rem; border: 1px solid rgba(135,105,56,.35); border-radius: 999px; color: #806a3d; font-size: .66rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
 .about-copy p { line-height: 1.75; color: #456356; }
+.about-copy .about-opening { margin-top: 0; font-family: Georgia, 'Times New Roman', serif; color: #294d3f; font-size: 1.18rem; font-style: italic; line-height: 1.65; }
 footer { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 2rem clamp(1.25rem,5vw,5rem); background: #0e2b23; color: #f1ebdc; }
 footer p, footer > a:last-child { color: #aebeb3; font-size: .8rem; }
 footer .brand-copy small, .direct-header .brand-copy small { color: #aebeb3; }

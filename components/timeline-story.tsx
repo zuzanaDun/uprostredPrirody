@@ -298,7 +298,13 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
       <section id="o-nas" className="about-section" aria-labelledby="about-title">
         <div className="about-number">02</div>
         <div><p className="eyebrow"><span /> O nás</p><h2 id="about-title">Za každým miestom<br />sú <em>ľudia.</em></h2></div>
-        <div className="about-copy"><span>Dočasný obsah</span><p>Sme ľudia, ktorí si zvolili tvoriť miesto pre život bližšie k prírode. Tento text je pripravený na vaše vlastné slová – kto ste, čo pre vás rodový statok znamená a prečo chcete jeho premenu odovzdať ďalej.</p><p>Keď budete pripravení, nahraďte tento krátky úvod osobným príbehom v obsahu stránky.</p></div>
+        <div className="about-copy">
+          <p className="about-opening">Kde bolo, tam bolo, uprostred prenádhernej prírody žil raz jeden malý chlapec v malom domčeku…</p>
+          <p>Takto začínajú všetky rozprávky na dobrú noc od času, keď sme si kúpili 1,5 ha pozemok, aby sme vytvorili RODOVÝ STATOK. Naša cesta sa začala, keď sa nám narodil synček a začali sme riešiť zdravú stravu. To ma najprv priviedlo k Zuzke z Liferesetu, kde som sa dozvedela o permakultúre, následne k Jaroslavovi Slobodovi a po prečítaní jeho webu ku knihám Anastasia od Vladimíra Megreho. Práve Anastázia pre nás vytvorila krásny obraz rodových statkov – pozemku nie menšieho než 1 ha, kde rodina vytvorí svoj kúsok raja.</p>
+          <p>Tri roky po tom, čo sme zatúžili mať rodový statok, sme sa presťahovali na náš pozemok, kde si tvoríme náš rodový statok, rajskú záhradu, náš priestor lásky.</p>
+          <p>Volám sa Zuzka a na rodovom statku žijem so svojím manželom, synom a dcérkou.</p>
+          <p>Tento blog je o mojom rodovom statku, o mojej ceste životom. Nech je pre vás inšpiráciou…</p>
+        </div>
       </section>
 
       <footer><a className="brand" href="#zaciatok"><span className="brand-mark"><Leaf /></span><span className="brand-copy"><small>Rodový statok</small><span>Uprostred prírody</span></span></a><p>Príbeh miesta, ktoré tvoríme pre život.</p><a href="#zaciatok">Späť na začiatok ↑</a></footer>
