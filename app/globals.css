@@ -311,6 +311,7 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
   .timeline-event.event-left .event-visual, .timeline-event.event-right .event-visual { grid-column: 2; grid-row: 1; }
   .timeline-event.event-left .event-copy, .timeline-event.event-right .event-copy { grid-column: 2; grid-row: 2; padding: 0; }
   .timeline-event .timeline-node { left: 2.75rem; top: 7rem; }
+  .featured-event .milestone-badge { left: 0; top: .8rem; }
   .timeline-event .event-date { flex-direction: column; min-width: 5rem; text-align: center; }
   .featured-event { margin-block: .5rem 3.5rem; }
   .featured-event::before { inset: -1rem 0; }

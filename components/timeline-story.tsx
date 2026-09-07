@@ -226,9 +226,9 @@ function EventCard({ event, index, onOpen }: { event: EventRecord; index: number
   return (
     <article id={`udalost-${event.id}`} className={`timeline-event ${index % 2 ? 'event-right' : 'event-left'} ${event.featured ? 'featured-event' : ''}`}>
       <div className="timeline-node" aria-hidden="true"><span /></div>
+      {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
       <div className={`event-date ${event.datePrecision === 'year' ? 'year-date' : ''}`}>{event.datePrecision === 'year' ? <strong>{date.getFullYear()}</strong> : <><strong>{date.getDate()}</strong><span>{monthNames[date.getMonth()].slice(0, 3).toUpperCase()}<br />{date.getFullYear()}</span></>}</div>
       <div className="event-visual">
-        {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
         <RotatingEventMedia event={event} />
       </div>
       <div className="event-copy">
