@@ -70,6 +70,47 @@ function PlaceholderMedia({ src, alt, label = 'Miesto pre vašu fotografiu', cla
   return <div className={`placeholder-media ${className}`} role="img" aria-label={alt}><Leaf aria-hidden="true" /><span>{label}</span></div>;
 }
 
+function RotatingEventMedia({ event }: { event: EventRecord }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const items = useMemo(() => {
+    const available = event.gallery.filter((item) => Boolean(item.src));
+    const cover = available.find((item) => item.src === event.coverImage)
+      || (event.coverImage ? { src: event.coverImage, alt: `Titulná fotografia udalosti ${event.title}` } : null);
+    return [cover, ...available.filter((item) => item.src !== cover?.src)].filter((item): item is GalleryItem => Boolean(item));
+  }, [event.coverImage, event.gallery, event.title]);
+
+  useEffect(() => setActiveIndex(0), [event.id]);
+
+  useEffect(() => {
+    if (items.length < 2 || paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = window.setInterval(() => setActiveIndex((value) => (value + 1) % items.length), 4800);
+    return () => window.clearInterval(timer);
+  }, [items.length, paused]);
+
+  if (!items.length) return <PlaceholderMedia alt={`Titulná fotografia udalosti ${event.title}`} />;
+
+  return (
+    <div
+      className="rotating-media"
+      role="img"
+      aria-label={`${items[activeIndex].alt}. Fotografia ${activeIndex + 1} z ${items.length}.`}
+      onPointerEnter={() => setPaused(true)}
+      onPointerLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}
+    >
+      {items.map((item, index) => (
+        <span key={item.src} className={`rotating-slide ${index === activeIndex ? 'is-active' : ''}`} aria-hidden="true">
+          <img className="rotating-backdrop" src={item.src} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+          <img className="rotating-image" src={item.src} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+        </span>
+      ))}
+      {items.length > 1 && <div className="rotating-dots" aria-label="Výber fotografie">{items.map((item, index) => <button key={item.src} type="button" className={index === activeIndex ? 'active' : ''} onClick={() => setActiveIndex(index)} aria-label={`Zobraziť fotografiu ${index + 1} z ${items.length}`} aria-pressed={index === activeIndex} />)}</div>}
+    </div>
+  );
+}
+
 function YouTubeId(url: string) {
   return url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^&?/]+)/)?.[1] || '';
 }
@@ -189,7 +230,7 @@ function EventCard({ event, index, onOpen }: { event: EventRecord; index: number
       <div className={`event-date ${event.datePrecision === 'year' ? 'year-date' : ''}`}>{event.datePrecision === 'year' ? <strong>{date.getFullYear()}</strong> : <><strong>{date.getDate()}</strong><span>{monthNames[date.getMonth()].slice(0, 3).toUpperCase()}<br />{date.getFullYear()}</span></>}</div>
       <div className="event-visual">
         {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
-        <PlaceholderMedia src={event.coverImage} alt={`Titulná fotografia udalosti ${event.title}`} />
+        <RotatingEventMedia event={event} />
       </div>
       <div className="event-copy">
         <div className="event-categories">{event.categories.map((category) => <span key={category}>{category}</span>)}</div>

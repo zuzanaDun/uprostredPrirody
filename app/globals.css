@@ -178,10 +178,19 @@ h1 em, h2 em { color: #a88345; font-weight: 400; }
 .timeline-event .event-date.year-date strong { font-size: 1.45rem; letter-spacing: .04em; }
 .timeline-event .event-date span { font-size: .64rem; line-height: 1.45; letter-spacing: .1em; }
 .event-visual { position: relative; }
-.event-visual .placeholder-media, .event-visual .media-frame { min-height: 22rem; border-radius: 47% 53% 43% 57% / 55% 43% 57% 45%; }
-.event-right .event-visual .placeholder-media, .event-right .event-visual .media-frame { border-radius: 58% 42% 52% 48% / 46% 55% 45% 54%; }
+.event-visual .placeholder-media, .event-visual .media-frame, .event-visual .rotating-media { min-height: 22rem; border-radius: 47% 53% 43% 57% / 55% 43% 57% 45%; }
+.event-right .event-visual .placeholder-media, .event-right .event-visual .media-frame, .event-right .event-visual .rotating-media { border-radius: 58% 42% 52% 48% / 46% 55% 45% 54%; }
 .media-frame { overflow: hidden; aspect-ratio: 4/3; background: #dfe3d6; }
 .media-frame img { width: 100%; height: 100%; object-fit: cover; }
+.rotating-media { position: relative; overflow: hidden; aspect-ratio: 4/3; background: #cfd8ca; isolation: isolate; }
+.rotating-slide { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; transition: opacity .9s ease; }
+.rotating-slide.is-active { opacity: 1; }
+.rotating-slide img { position: absolute; width: 100%; height: 100%; }
+.rotating-backdrop { object-fit: cover; filter: blur(22px); opacity: .22; transform: scale(1.14); }
+.rotating-image { z-index: 1; object-fit: contain; padding: .75rem; }
+.rotating-dots { position: absolute; z-index: 3; right: 1.2rem; bottom: 1.2rem; left: 1.2rem; display: flex; justify-content: center; gap: .45rem; }
+.rotating-dots button { width: .55rem; height: .55rem; padding: 0; border: 1px solid rgba(255,255,255,.9); border-radius: 50%; background: rgba(20,54,42,.38); box-shadow: 0 1px 5px rgba(13,38,29,.3); cursor: pointer; transition: width .25s ease, border-radius .25s ease, background .25s ease; }
+.rotating-dots button.active { width: 1.55rem; border-radius: 999px; background: #f4e8c9; }
 .timeline-event .event-copy h3 { margin: 0 0 1rem; font-size: clamp(2rem, 3.3vw, 3.45rem); line-height: 1.02; letter-spacing: -.035em; }
 .timeline-event .event-copy > p { max-width: 31rem; line-height: 1.7; color: #5c6a64; }
 .timeline-event .event-copy .short-story { color: #314d41; }
@@ -192,7 +201,7 @@ h1 em, h2 em { color: #a88345; font-weight: 400; }
 .featured-event { min-height: 34rem; margin-block: 3rem 8rem; }
 .featured-event::before { content: ''; position: absolute; inset: -3rem 6% -3rem; z-index: -1; border: 1px solid rgba(184,141,67,.26); border-radius: 48% 52% 52% 48% / 46% 45% 55% 54%; background: radial-gradient(circle at 50% 50%, rgba(215,180,110,.14), transparent 68%); }
 .featured-event .timeline-node { width: 2rem; height: 2rem; background: #c59a50; box-shadow: 0 0 0 1px #c59a50, 0 0 30px rgba(197,154,80,.6); }
-.featured-event .event-visual .placeholder-media, .featured-event .event-visual .media-frame { min-height: 30rem; box-shadow: 0 30px 90px rgba(126,92,39,.2); }
+.featured-event .event-visual .placeholder-media, .featured-event .event-visual .media-frame, .featured-event .event-visual .rotating-media { min-height: 30rem; box-shadow: 0 30px 90px rgba(126,92,39,.2); }
 .milestone-badge { position: absolute; z-index: 3; top: 1.2rem; left: 1.2rem; display: inline-flex; align-items: center; gap: .4rem; padding: .55rem .8rem; border-radius: 999px; background: #d3aa62; color: #17382e; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .milestone-badge svg { width: .8rem; height: .8rem; }
 .empty-results { max-width: 44rem; margin: 4rem auto; padding: 4rem 2rem; border: 1px solid #cec9b8; border-radius: 50% 50% 45% 55%; text-align: center; }
@@ -319,7 +328,7 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
   .timeline-event .event-date { min-width: 4.3rem; padding-inline: .2rem; }
   .timeline-event .event-date strong { font-size: 1.7rem; }
   .timeline-event .event-date.year-date strong { font-size: 1.05rem; }
-  .event-visual .placeholder-media, .event-visual .media-frame, .featured-event .event-visual .placeholder-media, .featured-event .event-visual .media-frame { min-height: 13rem; }
+  .event-visual .placeholder-media, .event-visual .media-frame, .event-visual .rotating-media, .featured-event .event-visual .placeholder-media, .featured-event .event-visual .media-frame, .featured-event .event-visual .rotating-media { min-height: 13rem; }
   .timeline-event .event-copy h3 { font-size: 2rem; }
   .featured-event { margin-block: 1rem 6rem; }
   .about-section { grid-template-columns: 1fr; padding-block: 6rem; }
