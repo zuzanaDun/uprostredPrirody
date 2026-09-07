@@ -175,6 +175,7 @@ h1 em, h2 em { color: #a88345; font-weight: 400; }
 .timeline-event .timeline-node span { width: .25rem; height: .25rem; border-radius: 50%; background: #d9bd82; }
 .timeline-event .event-date { position: relative; z-index: 5; justify-self: center; display: flex; align-items: center; gap: .45rem; min-width: 6.2rem; padding: .75rem .45rem; background: var(--background); }
 .timeline-event .event-date strong { font-family: Georgia, serif; font-size: 2.15rem; font-weight: 400; }
+.timeline-event .event-date.year-date strong { font-size: 1.45rem; letter-spacing: .04em; }
 .timeline-event .event-date span { font-size: .64rem; line-height: 1.45; letter-spacing: .1em; }
 .event-visual { position: relative; }
 .event-visual .placeholder-media, .event-visual .media-frame { min-height: 22rem; border-radius: 47% 53% 43% 57% / 55% 43% 57% 45%; }
@@ -246,6 +247,8 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
 .milestone-label svg { width: .75rem; height: .75rem; }
 .detail-body { max-width: 45rem; margin: 0 auto; padding: 4rem clamp(1.3rem,5vw,4rem) 6rem; }
 .detail-body > p { font-family: Georgia, serif; font-size: 1.08rem; line-height: 1.85; color: #314a40; }
+.detail-body > p strong { color: #173c31; font-weight: 700; }
+.detail-body > p em { color: #806a3d; }
 .detail-body .detail-lead { margin-top: 0; font-size: clamp(1.35rem,2.2vw,1.75rem); line-height: 1.55; color: #173c31; }
 .detail-body h2 { margin: 3.2rem 0 1rem; font-size: clamp(2rem,4vw,3rem); line-height: 1.08; }
 .detail-body blockquote { position: relative; margin: 3rem 0; padding: 2rem 1rem 2rem 3rem; border-left: 2px solid #c79b50; font-family: Georgia,serif; font-size: clamp(1.45rem,3vw,2.2rem); font-style: italic; line-height: 1.45; color: #8b6d34; }
@@ -315,6 +318,7 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
   .timeline-event .timeline-node { left: 2.35rem; top: 5.8rem; }
   .timeline-event .event-date { min-width: 4.3rem; padding-inline: .2rem; }
   .timeline-event .event-date strong { font-size: 1.7rem; }
+  .timeline-event .event-date.year-date strong { font-size: 1.05rem; }
   .event-visual .placeholder-media, .event-visual .media-frame, .featured-event .event-visual .placeholder-media, .featured-event .event-visual .media-frame { min-height: 13rem; }
   .timeline-event .event-copy h3 { font-size: 2rem; }
   .featured-event { margin-block: 1rem 6rem; }

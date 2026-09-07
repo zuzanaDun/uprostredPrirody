@@ -50,8 +50,17 @@ const monthNames = ['január', 'február', 'marec', 'apríl', 'máj', 'jún', 'j
 
 function formatDate(event: EventRecord, long = false) {
   const date = new Date(`${event.date}T12:00:00`);
+  if (event.datePrecision === 'year') return String(date.getFullYear());
   const value = new Intl.DateTimeFormat('sk-SK', long ? { day: 'numeric', month: 'long', year: 'numeric' } : { day: 'numeric', month: 'short', year: 'numeric' }).format(date);
   return event.approximateDate ? `približne ${value}` : value;
+}
+
+function InlineMarkup({ text }: { text: string }) {
+  return <>{text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).filter(Boolean).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) return <strong key={index}>{part.slice(2, -2)}</strong>;
+    if (part.startsWith('*') && part.endsWith('*')) return <em key={index}>{part.slice(1, -1)}</em>;
+    return <span key={index}>{part}</span>;
+  })}</>;
 }
 
 function PlaceholderMedia({ src, alt, label = 'Miesto pre vašu fotografiu', className = '' }: { src?: string; alt: string; label?: string; className?: string }) {
@@ -104,8 +113,8 @@ function Gallery({ items }: { items: GalleryItem[] }) {
       if (event.key === 'ArrowRight') move(1);
       if (event.key === 'ArrowLeft') move(-1);
     };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    window.addEventListener('keydown', onKeyDown, true);
+    return () => window.removeEventListener('keydown', onKeyDown, true);
   }, [isOpen, items.length]);
 
   if (!items.length) return null;
@@ -156,12 +165,12 @@ export function EventStory({ event, standalone = false }: { event: EventRecord; 
       </div>
       <div className="detail-body">
         <p className="detail-lead">{event.summary}</p>
-        {event.story.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+        {event.story.split('\n\n').map((paragraph, index) => <p key={index}><InlineMarkup text={paragraph} /></p>)}
         {event.content?.map((block, index) => {
-          if (block.type === 'heading') return <h2 key={index}>{block.text}</h2>;
-          if (block.type === 'quote') return <blockquote key={index}>{block.text}</blockquote>;
+          if (block.type === 'heading') return <h2 key={index}><InlineMarkup text={block.text} /></h2>;
+          if (block.type === 'quote') return <blockquote key={index}><InlineMarkup text={block.text} /></blockquote>;
           if (block.type === 'image') return <figure key={index}><PlaceholderMedia src={block.src} alt={block.alt} /><figcaption>{block.caption}</figcaption></figure>;
-          return <p key={index}>{block.text}</p>;
+          return <p key={index}><InlineMarkup text={block.text} /></p>;
         })}
         <Gallery items={event.gallery} />
         {event.video && <section className="detail-video" aria-labelledby="video-title"><div className="detail-section-label"><span>▶</span><h3 id="video-title">Video</h3></div><VideoBlock event={event} /></section>}
@@ -177,7 +186,7 @@ function EventCard({ event, index, onOpen }: { event: EventRecord; index: number
   return (
     <article id={`udalost-${event.id}`} className={`timeline-event ${index % 2 ? 'event-right' : 'event-left'} ${event.featured ? 'featured-event' : ''}`}>
       <div className="timeline-node" aria-hidden="true"><span /></div>
-      <div className="event-date"><strong>{date.getDate()}</strong><span>{monthNames[date.getMonth()].slice(0, 3).toUpperCase()}<br />{date.getFullYear()}</span></div>
+      <div className={`event-date ${event.datePrecision === 'year' ? 'year-date' : ''}`}>{event.datePrecision === 'year' ? <strong>{date.getFullYear()}</strong> : <><strong>{date.getDate()}</strong><span>{monthNames[date.getMonth()].slice(0, 3).toUpperCase()}<br />{date.getFullYear()}</span></>}</div>
       <div className="event-visual">
         {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
         <PlaceholderMedia src={event.coverImage} alt={`Titulná fotografia udalosti ${event.title}`} />
@@ -204,7 +213,7 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
   const previousUrl = useRef('/#pribeh');
 
   const years = useMemo(() => [...new Set(events.map((event) => event.date.slice(0, 4)))].sort(), [events]);
-  const filtered = useMemo(() => events.map((event, stableIndex) => ({ event, stableIndex })).filter(({ event }) => year === 'all' || event.date.startsWith(year)).filter(({ event }) => month === 'all' || String(new Date(`${event.date}T12:00:00`).getMonth() + 1) === month).filter(({ event }) => category === 'all' || event.categories.includes(category)).sort((a, b) => { const result = a.event.date.localeCompare(b.event.date) || a.stableIndex - b.stableIndex; return order === 'asc' ? result : -result; }).map(({ event }) => event), [events, year, month, category, order]);
+  const filtered = useMemo(() => events.map((event, stableIndex) => ({ event, stableIndex })).filter(({ event }) => year === 'all' || event.date.startsWith(year)).filter(({ event }) => month === 'all' || (event.datePrecision !== 'year' && String(new Date(`${event.date}T12:00:00`).getMonth() + 1) === month)).filter(({ event }) => category === 'all' || event.categories.includes(category)).sort((a, b) => { const result = a.event.date.localeCompare(b.event.date) || a.stableIndex - b.stableIndex; return order === 'asc' ? result : -result; }).map(({ event }) => event), [events, year, month, category, order]);
   const activeEvent = filtered[currentIndex];
   const hasFilters = year !== 'all' || month !== 'all' || category !== 'all';
 
