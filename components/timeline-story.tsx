@@ -102,7 +102,6 @@ function RotatingEventMedia({ event }: { event: EventRecord }) {
     >
       {items.map((item, index) => (
         <span key={item.src} className={`rotating-slide ${index === activeIndex ? 'is-active' : ''}`} aria-hidden="true">
-          <img className="rotating-backdrop" src={item.src} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
           <img className="rotating-image" src={item.src} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
         </span>
       ))}
