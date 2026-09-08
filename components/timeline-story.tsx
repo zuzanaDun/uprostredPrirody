@@ -31,6 +31,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import type { EventRecord, GalleryItem } from '@/lib/events';
+import { groupTimelineEvents } from '@/lib/timeline-groups';
 
 const categories = [
   { name: 'Slameno-hlinený dom', icon: Hammer },
@@ -224,7 +225,6 @@ function EventCard({ event, onOpen }: { event: EventRecord; onOpen: (event: Even
   const isLong = event.story.length > 190 || Boolean(event.content?.length || event.gallery.length || event.video);
   return (
     <article id={`udalost-${event.id}`} className={`timeline-event ${event.featured ? 'featured-event' : ''}`}>
-      <div className="timeline-node" aria-hidden="true"><span /></div>
       <div className="event-card-header">
         <div className="event-card-meta">
           {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
@@ -236,7 +236,7 @@ function EventCard({ event, onOpen }: { event: EventRecord; onOpen: (event: Even
         <RotatingEventMedia event={event} />
       </div>
       <div className="event-copy">
-        <h3>{event.title}</h3>
+        <h4>{event.title}</h4>
         <p className="event-summary">{event.summary}{isLong && <> <button className="read-story" onClick={() => onOpen(event)}>Čítaj ďalej...</button></>}</p>
         {!isLong && <p className="short-story">{event.story}</p>}
       </div>
@@ -258,6 +258,7 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
   const years = useMemo(() => [...new Set(events.map((event) => event.date.slice(0, 4)))].sort(), [events]);
   const filtered = useMemo(() => events.map((event, stableIndex) => ({ event, stableIndex })).filter(({ event }) => year === 'all' || event.date.startsWith(year)).filter(({ event }) => month === 'all' || (event.datePrecision !== 'year' && String(new Date(`${event.date}T12:00:00`).getMonth() + 1) === month)).filter(({ event }) => category === 'all' || event.categories.includes(category)).sort((a, b) => { const result = a.event.date.localeCompare(b.event.date) || a.stableIndex - b.stableIndex; return order === 'asc' ? result : -result; }).map(({ event }) => event), [events, year, month, category, order]);
   const activeEvent = filtered[currentIndex];
+  const timelineGroups = useMemo(() => groupTimelineEvents(filtered), [filtered]);
   const hasFilters = year !== 'all' || month !== 'all' || category !== 'all';
 
   const scrollToEvent = (event: EventRecord | undefined) => {
@@ -344,7 +345,12 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
         </div>
 
         <div className="results-summary" aria-live="polite"><span>{filtered.length}</span> {filtered.length === 1 ? 'udalosť' : filtered.length > 1 && filtered.length < 5 ? 'udalosti' : 'udalostí'} v príbehu</div>
-        {filtered.length ? <div className="timeline-list">{filtered.map((event) => <EventCard key={event.id} event={event} onOpen={openEvent} />)}</div> : <div className="empty-results"><Leaf /><h3>V tomto období ešte nič nie je</h3><p>Skúste inú kombináciu roka, mesiaca alebo kategórie.</p><Button variant="outline" onClick={clearFilters}><RotateCcw /> Zobraziť celý príbeh</Button></div>}
+        {filtered.length ? <div className="timeline-list">{timelineGroups.map((group) => (
+          <section key={group.key} className="timeline-period" aria-labelledby={`obdobie-${group.key}`}>
+            <h3 className="timeline-period-title" id={`obdobie-${group.key}`}><time dateTime={group.key}>{group.label}</time></h3>
+            <div className="timeline-period-grid">{group.events.map((event) => <EventCard key={event.id} event={event} onOpen={openEvent} />)}</div>
+          </section>
+        ))}</div> : <div className="empty-results"><Leaf /><h3>V tomto období ešte nič nie je</h3><p>Skúste inú kombináciu roka, mesiaca alebo kategórie.</p><Button variant="outline" onClick={clearFilters}><RotateCcw /> Zobraziť celý príbeh</Button></div>}
       </section>
 
       <section id="o-nas" className="about-section" aria-labelledby="about-title">
