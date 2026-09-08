@@ -163,7 +163,7 @@ h1 em, h2 em { color: #a88345; font-weight: 400; }
 .results-summary span { font-family: Georgia, serif; color: #1a4939; font-size: 1.8rem; }
 .timeline-list { position: relative; max-width: 712px; margin: 0 auto; padding: 0 0 1.5rem 32px; }
 .timeline-list::before { content: ''; position: absolute; top: 0; bottom: 0; left: 8px; width: 1px; background: linear-gradient(transparent, #8da092 2%, #8da092 96%, transparent); }
-.timeline-event { position: relative; width: 100%; max-width: 680px; margin: 0 0 24px; border: 1px solid #000; border-radius: 12px; background: #000; color: #fff; }
+.timeline-event { position: relative; width: 100%; max-width: 680px; margin: 0 0 24px; border: 1px solid #000; border-radius: 6px; background: #000; color: #fff; }
 .timeline-event:last-child { margin-bottom: 0; }
 .timeline-event .timeline-node { position: absolute; left: -25px; top: 32px; width: 9px; height: 9px; border: 2px solid var(--background); border-radius: 50%; background: #52745f; box-shadow: 0 0 0 1px #8da092; transform: translateX(-50%); }
 .event-card-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem 1rem; padding: 20px; }
@@ -179,14 +179,15 @@ h1 em, h2 em { color: #a88345; font-weight: 400; }
 .rotating-slide { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; transition: opacity .9s ease; }
 .rotating-slide.is-active { opacity: 1; }
 .rotating-slide img { position: absolute; width: 100%; height: 100%; }
-.rotating-image { z-index: 1; object-fit: contain; }
+.rotating-image { z-index: 1; object-fit: cover; object-position: center; }
 .rotating-dots { position: absolute; z-index: 3; right: 1rem; bottom: 48px; left: 1rem; display: flex; justify-content: center; }
 .rotating-dots button { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
 .rotating-dots button::after { content: ''; width: 7px; height: 7px; border: 1px solid #fff; border-radius: 999px; background: #333; box-shadow: 0 1px 5px #000; transition: width .25s ease, background .25s ease; }
 .rotating-dots button.active::after { width: 20px; background: #e3c68e; }
 .timeline-event :is(button, a):focus-visible { outline: 2px solid #e3c68e; outline-offset: 3px; }
 .timeline-event .event-copy { padding: 0 20px 20px; }
-.timeline-event .event-copy h3 { margin: 0 0 .75rem; color: #fff; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.12; letter-spacing: -.035em; }
+.timeline-event .event-copy h3 { margin: 0 0 .75rem; color: #dce8d8; font-size: clamp(1.75rem, 3vw, 2.5rem); font-style: italic; font-weight: 400; line-height: 1.16; letter-spacing: -.025em; }
+.timeline-event .event-copy h3::after { content: ''; display: block; width: 48px; height: 2px; margin-top: .8rem; background: #82a886; }
 .timeline-event .event-copy > p { margin: 0; max-width: none; font-size: 1rem; line-height: 1.65; color: #c7c7c3; }
 .timeline-event .event-copy .short-story { margin-top: .65rem; color: #c7c7c3; }
 .event-categories { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; }
