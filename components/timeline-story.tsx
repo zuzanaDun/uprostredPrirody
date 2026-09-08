@@ -93,7 +93,7 @@ function RotatingEventMedia({ event }: { event: EventRecord }) {
   return (
     <div
       className="rotating-media"
-      role="img"
+      role="group"
       aria-label={`${items[activeIndex].alt}. Fotografia ${activeIndex + 1} z ${items.length}.`}
       onPointerEnter={() => setPaused(true)}
       onPointerLeave={() => setPaused(false)}
@@ -220,19 +220,22 @@ export function EventStory({ event, standalone = false }: { event: EventRecord; 
   );
 }
 
-function EventCard({ event, index, onOpen }: { event: EventRecord; index: number; onOpen: (event: EventRecord) => void }) {
-  const date = new Date(`${event.date}T12:00:00`);
+function EventCard({ event, onOpen }: { event: EventRecord; onOpen: (event: EventRecord) => void }) {
   const isLong = event.story.length > 190 || Boolean(event.content?.length || event.gallery.length || event.video);
   return (
-    <article id={`udalost-${event.id}`} className={`timeline-event ${index % 2 ? 'event-right' : 'event-left'} ${event.featured ? 'featured-event' : ''}`}>
+    <article id={`udalost-${event.id}`} className={`timeline-event ${event.featured ? 'featured-event' : ''}`}>
       <div className="timeline-node" aria-hidden="true"><span /></div>
-      {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
-      <div className={`event-date ${event.datePrecision === 'year' ? 'year-date' : ''}`}>{event.datePrecision === 'year' ? <strong>{date.getFullYear()}</strong> : <><strong>{date.getDate()}</strong><span>{monthNames[date.getMonth()].slice(0, 3).toUpperCase()}<br />{date.getFullYear()}</span></>}</div>
+      <div className="event-card-header">
+        <div className="event-card-meta">
+          {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
+          <time dateTime={event.datePrecision === 'year' ? event.date.slice(0, 4) : event.date}>{formatDate(event)}</time>
+        </div>
+        <div className="event-categories">{event.categories.map((category) => <span key={category}>{category}</span>)}</div>
+      </div>
       <div className="event-visual">
         <RotatingEventMedia event={event} />
       </div>
       <div className="event-copy">
-        <div className="event-categories">{event.categories.map((category) => <span key={category}>{category}</span>)}</div>
         <h3>{event.title}</h3>
         <p className="event-summary">{event.summary}{isLong && <> <button className="read-story" onClick={() => onOpen(event)}>Čítaj ďalej...</button></>}</p>
         {!isLong && <p className="short-story">{event.story}</p>}
@@ -341,7 +344,7 @@ export function TimelineStory({ events }: { events: EventRecord[] }) {
         </div>
 
         <div className="results-summary" aria-live="polite"><span>{filtered.length}</span> {filtered.length === 1 ? 'udalosť' : filtered.length > 1 && filtered.length < 5 ? 'udalosti' : 'udalostí'} v príbehu</div>
-        {filtered.length ? <div className="timeline-list">{filtered.map((event, index) => <EventCard key={event.id} event={event} index={index} onOpen={openEvent} />)}</div> : <div className="empty-results"><Leaf /><h3>V tomto období ešte nič nie je</h3><p>Skúste inú kombináciu roka, mesiaca alebo kategórie.</p><Button variant="outline" onClick={clearFilters}><RotateCcw /> Zobraziť celý príbeh</Button></div>}
+        {filtered.length ? <div className="timeline-list">{filtered.map((event) => <EventCard key={event.id} event={event} onOpen={openEvent} />)}</div> : <div className="empty-results"><Leaf /><h3>V tomto období ešte nič nie je</h3><p>Skúste inú kombináciu roka, mesiaca alebo kategórie.</p><Button variant="outline" onClick={clearFilters}><RotateCcw /> Zobraziť celý príbeh</Button></div>}
       </section>
 
       <section id="o-nas" className="about-section" aria-labelledby="about-title">
