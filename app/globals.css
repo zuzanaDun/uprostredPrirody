@@ -222,11 +222,12 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
 /* Full-screen family album */
 .family-album { height: 100dvh; min-height: 0; overflow: hidden; background: var(--background); }
 .family-album .album-shell { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 0; height: 100%; min-height: 0; }
-.album-header { position: relative; z-index: 10; padding: 22px 28px 0; background: #dce8d8; color: #234b37; }
+.album-header { position: relative; isolation: isolate; z-index: 10; padding: 22px 28px 0; background: #dce8d8; color: #234b37; }
+.album-header::before { content: ''; position: absolute; z-index: -1; inset: 0 0 0 auto; width: min(65%, 960px); background: url('/images/rodina-pri-jazierku-hlavicka.jpg') center 58% / cover no-repeat; mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.08) 25%, rgba(0,0,0,.5) 50%, #000 78%); pointer-events: none; }
 .album-brand { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .17em; font-size: 11px; font-weight: 700; color: #527658; }
 .album-brand svg { width: 17px; height: 17px; }
 .album-header h1 { max-width: none; font-size: clamp(1.9rem, 3.7vw, 3.1rem); letter-spacing: -.04em; line-height: 1.05; }
-.album-header > p { max-width: 850px; margin: 12px 0 15px; color: #48604b; font-size: 1rem; line-height: 1.45; }
+.album-header > p { max-width: min(62%, 850px); margin: 12px 0 15px; color: #48604b; font-size: 1rem; line-height: 1.45; }
 .album-header > p strong { color: #254e35; font-weight: 600; white-space: nowrap; }
 .family-album .album-tabs { height: 42px; gap: 24px; padding: 0; margin: 0; border: 0; }
 .album-tabs [data-slot='tabs-trigger'] { height: 100%; padding: 0 2px; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: #47694f; font-size: .95rem; }
@@ -287,7 +288,8 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
 .album-player > span { max-width: 220px; padding-inline: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .85rem; }
 @media (max-width: 640px) {
   .album-header { padding: 14px 16px 0; }
-  .album-header > p { margin: 9px 0 10px; font-size: .875rem; line-height: 1.4; }
+  .album-header::before { width: 100%; opacity: .23; background-position: right center; }
+  .album-header > p { max-width: none; margin: 9px 0 10px; font-size: .875rem; line-height: 1.4; }
   .album-header h1 { font-size: 2rem; }
   .family-album .album-tabs { height: 38px; }
   .album-toolbar { padding: 4px 10px; gap: 0; }
