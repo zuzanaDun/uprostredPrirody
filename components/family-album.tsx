@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
 import { EventStory, formatDate, RotatingEventMedia } from '@/components/timeline-story';
 import { albumColumns, albumPeriod, estateDuration } from '@/lib/album';
+import { AboutSlideshow } from '@/components/about-slideshow';
 import type { EventRecord } from '@/lib/events';
 
 const categoryNames = ['Slameno-hlinený dom', 'Slamenno-hlinená chatka', 'Záhrada', 'Plot', 'Zvieratá', 'Rodina a život', 'Jazierko', 'Iné stavby', 'Rodový statok', 'Miľníky', 'Pribehy'];
@@ -194,7 +195,7 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
             {filtered.length ? <div ref={gridRef} className={`album-grid album-size-${zoom}`} style={{ '--album-columns': columns } as CSSProperties}>{filtered.map(event => <AlbumTile key={event.id} event={event} zoom={zoom} active={tab === 'events' && !selected} onOpen={openEvent} />)}</div> : <div className="album-empty"><Leaf /><h2>V tomto období ešte nič nie je</h2><p>Skúste iný rok, mesiac alebo kategóriu.</p><button className="album-control" onClick={clearFilters}><RotateCcw /> Zobraziť všetky udalosti</button></div>}
           </div>
         </TabsContent>
-        <TabsContent value="about" keepMounted className="album-about-panel"><AboutUs /></TabsContent>
+        <TabsContent value="about" keepMounted className="album-about-panel"><AboutUs active={tab === 'about'} /></TabsContent>
       </Tabs>
       {playerOpen && activeEvent && tab === 'events' && <aside className="album-player" aria-label="Prehrávanie príbehu">
         <span>{playerIndex + 1}/{filtered.length} · {activeEvent.title}</span>
@@ -214,11 +215,20 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
   );
 }
 
-function AboutUs() {
+function AboutUs({ active }: { active: boolean }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  useLayoutEffect(() => {
+    const section = sectionRef.current, panel = section?.parentElement;
+    if (!section || !panel || !active) return;
+    const measure = () => section.style.setProperty('--about-available-height', `${panel.clientHeight}px`);
+    const observer = new ResizeObserver(measure);
+    measure(); observer.observe(panel);
+    return () => observer.disconnect();
+  }, [active]);
   return (
-<section id="o-nas" className="album-about" aria-labelledby="about-title">
-        <div className="about-number">02</div>
-        <div><p className="eyebrow"><span /> O nás</p><h2 id="about-title">Za každým miestom<br />sú <em>ľudia.</em></h2></div>
+<section ref={sectionRef} id="o-nas" className="album-about" aria-labelledby="about-title">
+        <h2 id="about-title">Za každým miestom<br />sú <em>ľudia.</em></h2>
+        <AboutSlideshow active={active} />
         <div className="about-copy">
           <p className="about-opening">Kde bolo, tam bolo, uprostred prenádhernej prírody žil raz jeden malý chlapec v malom domčeku…</p>
           <p>Takto začínajú všetky rozprávky na dobrú noc od času, keď sme si kúpili 1,5 ha pozemok, aby sme vytvorili RODOVÝ STATOK. Naša cesta sa začala, keď sa nám narodil synček a začali sme riešiť zdravú stravu. To ma najprv priviedlo k Zuzke z Liferesetu, kde som sa dozvedela o permakultúre, následne k Jaroslavovi Slobodovi a po prečítaní jeho webu ku knihám Anastasia od Vladimíra Megreho. Práve Anastázia pre nás vytvorila krásny obraz rodových statkov – pozemku nie menšieho než 1 ha, kde rodina vytvorí svoj kúsok raja.</p>
