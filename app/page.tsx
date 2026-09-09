@@ -1,6 +1,6 @@
-import { TimelineStory } from '@/components/timeline-story';
+import { FamilyAlbum } from '@/components/family-album';
 import { getPublishedEvents } from '@/lib/events';
 
 export default function Home() {
-  return <TimelineStory events={getPublishedEvents()} />;
+  return <FamilyAlbum events={getPublishedEvents()} initialNow={new Date().toISOString()} />;
 }

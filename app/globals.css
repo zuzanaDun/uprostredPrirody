@@ -219,6 +219,88 @@ footer p, footer > a:last-child { color: #aebeb3; font-size: .8rem; }
 footer .brand-copy small, .direct-header .brand-copy small { color: #aebeb3; }
 footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,.32); }
 
+/* Full-screen family album */
+.family-album { height: 100dvh; min-height: 0; overflow: hidden; background: var(--background); }
+.family-album .album-shell { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 0; height: 100%; min-height: 0; }
+.album-header { position: relative; z-index: 10; padding: 22px 28px 0; background: #dce8d8; color: #234b37; }
+.album-brand { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .17em; font-size: 11px; font-weight: 700; color: #527658; }
+.album-brand svg { width: 17px; height: 17px; }
+.album-header h1 { max-width: none; font-size: clamp(1.9rem, 3.7vw, 3.1rem); letter-spacing: -.04em; line-height: 1.05; }
+.album-header > p { max-width: 850px; margin: 12px 0 15px; color: #48604b; font-size: 1rem; line-height: 1.45; }
+.album-header > p strong { color: #254e35; font-weight: 600; white-space: nowrap; }
+.family-album .album-tabs { height: 42px; gap: 24px; padding: 0; margin: 0; border: 0; }
+.album-tabs [data-slot='tabs-trigger'] { height: 100%; padding: 0 2px; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: #47694f; font-size: .95rem; }
+.album-tabs [data-slot='tabs-trigger'][data-active] { color: #214c32; }
+.album-tabs [data-slot='tabs-trigger']::after { bottom: 0; background: #315f3e; height: 2px; }
+.family-album .album-events { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 0; min-height: 0; overflow: hidden; }
+.family-album [data-slot='tabs-content'][hidden] { display: none !important; }
+.album-toolbar { position: relative; z-index: 8; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; min-height: 54px; padding: 6px 20px; background: var(--background); border-bottom: 3px solid var(--background); }
+.album-period { min-width: 0; font-size: .95rem; line-height: 1.4; font-weight: 600; color: #31563c; }
+.album-period::first-letter { text-transform: uppercase; }
+.album-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.album-control { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 36px; min-height: 36px; padding: 6px 8px; border: 0; border-radius: 6px; background: transparent; color: #365e40; font-size: .875rem; cursor: pointer; }
+.album-control svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.album-control:hover:not(:disabled), .album-control.is-active { background: #d4e2cf; }
+.album-control:disabled { opacity: .3; cursor: default; }
+.album-zoom { display: flex; align-items: center; gap: 4px; border-left: 1px solid #cbdac5; padding-left: 7px; }
+.album-zoom [data-slot='slider'] { width: 82px; }
+.album-zoom-field { width: 82px; }
+.album-zoom [data-slot='slider-track'] { background: #c7d7c0; }
+.album-zoom [data-slot='slider-range'] { background: #5c825d; }
+.album-zoom [data-slot='slider-thumb'] { border-color: #426648; background: #416647; }
+.album-filters { width: min(320px, calc(100vw - 24px)); padding: 16px; background: #edf3e9; color: #25452e; }
+.album-filters [data-slot='select-trigger'] { width: 100%; min-height: 40px; background: #f6f9f2; }
+.album-filters > span { color: #59705d; font-size: .8rem; }
+.album-viewport { min-height: 0; height: 100%; overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; overflow-anchor: none; scrollbar-color: #91aa8d #edf3e9; scrollbar-width: thin; scroll-behavior: auto; }
+.album-viewport:focus-visible { outline: 2px solid #426648; outline-offset: -2px; }
+.album-grid { position: relative; display: grid; grid-template-columns: repeat(var(--album-columns), minmax(0, 1fr)); gap: 3px; background: var(--background); }
+.album-tile { position: relative; aspect-ratio: 1; min-width: 0; overflow: hidden; background: #25392a; }
+.album-tile > .rotating-media, .album-tile > .placeholder-media { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; aspect-ratio: auto; border: 0; border-radius: 0; box-shadow: none; }
+.album-tile > .placeholder-media { background: linear-gradient(145deg, #9cad91, #435e47); color: #edf3e9; }
+.album-tile > .placeholder-media > span { max-width: 80%; text-align: center; font-size: .75rem; }
+.album-tile .rotating-media { isolation: auto; }
+.album-tile-open { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer; }
+.album-tile-open:focus-visible { outline: 3px solid #d9e9cc; outline-offset: -5px; }
+.album-tile-copy { position: absolute; z-index: 3; inset: auto 0 0; padding: 32px 12px 12px; background: linear-gradient(transparent, rgba(0,0,0,.64) 35%, rgba(0,0,0,.83)); color: #eaf1e5; pointer-events: none; }
+.album-tile-copy h2 { margin: 6px 0 0; font-size: clamp(1.05rem, 1.7vw, 1.55rem); font-style: italic; line-height: 1.12; letter-spacing: -.025em; color: #e1eed8; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.album-tile-meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: .75rem; line-height: 1.3; }
+.album-milestone { display: inline-flex; align-items: center; gap: 3px; color: #e5cb90; }
+.album-milestone svg { width: 11px; height: 11px; }
+.album-tile-categories { margin-top: 8px; font-size: .75rem; color: #c6d7bc; line-height: 1.35; }
+.album-tile-copy p { margin: 7px 0 0; color: #e0e5db; font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.album-size-2 .album-tile-copy { padding: 40px 16px 16px; }
+.album-size-2 .album-tile-copy h2 { font-size: clamp(1.5rem, 2.1vw, 2rem); }
+.album-size-0 .placeholder-media span, .album-size-1 .placeholder-media span { display: none; }
+.album-tile .rotating-dots { inset: 5px 5px auto auto; width: max-content; z-index: 4; }
+.album-tile .rotating-dots button { width: 28px; height: 28px; }
+.album-tile .rotating-dots button.active::after { background: #dce8d8; }
+.album-tile .rotating-dots button:focus-visible { outline: 2px solid #edf3e9; outline-offset: -2px; }
+.album-empty { display: grid; justify-items: center; align-content: center; min-height: 100%; padding: 24px; text-align: center; color: #47684c; }
+.album-empty h2 { font-size: 1.6rem; margin: 16px 0 8px; }
+.album-empty p { margin: 0 0 16px; font-size: 1rem; }
+.album-about-panel { overflow-y: auto; min-height: 0; }
+.album-about { max-width: 920px; margin: 0 auto; padding: 36px 24px 60px; }
+.album-about .about-number, .album-about .eyebrow { display: none; }
+.album-about h2 { margin: 0 0 24px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; }
+.album-about .about-copy { max-width: 660px; font-size: 1rem; }
+.album-player { position: fixed; z-index: 35; display: flex; align-items: center; gap: 4px; bottom: 12px; right: 12px; max-width: calc(100vw - 24px); padding: 8px; border: 1px solid #bad0b0; border-radius: 10px; background: rgba(237,243,233,.97); box-shadow: 0 4px 24px #14281b33; }
+.album-player > span { max-width: 220px; padding-inline: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .85rem; }
+@media (max-width: 640px) {
+  .album-header { padding: 14px 16px 0; }
+  .album-header > p { margin: 9px 0 10px; font-size: .875rem; line-height: 1.4; }
+  .album-header h1 { font-size: 2rem; }
+  .family-album .album-tabs { height: 38px; }
+  .album-toolbar { padding: 4px 10px; gap: 0; }
+  .album-period { width: 100%; font-size: .875rem; padding: 4px 0; }
+  .album-actions { width: 100%; justify-content: flex-end; }
+  .album-actions > :first-child { margin-right: auto; }
+  .album-tile-copy { padding: 25px 8px 8px; }
+  .album-tile-meta { font-size: .75rem; }
+  .album-tile .rotating-dots button { width: 24px; height: 28px; }
+  .album-player { flex-wrap: wrap; }
+  .album-player > span { max-width: 100%; flex-basis: 100%; }
+}
+
 /* Story player */
 .story-player { position: fixed; z-index: 45; right: 1.25rem; bottom: 1.25rem; width: min(27rem, calc(100vw - 2rem)); padding: 1rem; border: 1px solid rgba(220,196,142,.5); border-radius: 1.3rem; background: rgba(15,47,38,.96); color: #fff9ea; box-shadow: 0 20px 70px rgba(7,26,20,.35); backdrop-filter: blur(18px); }
 .player-top { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: .8rem; }

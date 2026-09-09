@@ -1,55 +1,12 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import {
-  ArrowDown,
-  ArrowLeft,
-  ArrowUp,
-  BookOpen,
-  ChevronLeft,
-  ChevronRight,
-  CircleStop,
-  Compass,
-  Copy,
-  Hammer,
-  Leaf,
-  Pause,
-  PawPrint,
-  Play,
-  RefreshCw,
-  RotateCcw,
-  Sparkles,
-  Sprout,
-  Star,
-  Sun,
-  Users,
-  X,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, Copy, Leaf, Play, Sparkles, Star, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Progress, ProgressLabel, ProgressValue } from '@/components/ui/progress';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import type { EventRecord, GalleryItem } from '@/lib/events';
-import { groupTimelineEvents } from '@/lib/timeline-groups';
 
-const categories = [
-  { name: 'Slameno-hlinený dom', icon: Hammer },
-  { name: 'Slamenno-hlinená chatka', icon: BookOpen },
-  { name: 'Záhrada', icon: Sprout },
-  { name: 'Plot', icon: RefreshCw },
-  { name: 'Zvieratá', icon: PawPrint },
-  { name: 'Rodina a život', icon: Users },
-  { name: 'Jazierko', icon: Sun },
-  { name: 'Iné stavby', icon: Compass },
-  { name: 'Rodový statok', icon: Leaf },
-  { name: 'Miľníky', icon: Star },
-  { name: 'Pribehy', icon: BookOpen },
-];
-
-const monthNames = ['január', 'február', 'marec', 'apríl', 'máj', 'jún', 'júl', 'august', 'september', 'október', 'november', 'december'];
-
-function formatDate(event: EventRecord, long = false) {
+export function formatDate(event: EventRecord, long = false) {
   const date = new Date(`${event.date}T12:00:00`);
   if (event.datePrecision === 'year') return String(date.getFullYear());
   const value = new Intl.DateTimeFormat('sk-SK', long ? { day: 'numeric', month: 'long', year: 'numeric' } : { day: 'numeric', month: 'short', year: 'numeric' }).format(date);
@@ -71,7 +28,10 @@ function PlaceholderMedia({ src, alt, label = 'Miesto pre vašu fotografiu', cla
   return <div className={`placeholder-media ${className}`} role="img" aria-label={alt}><Leaf aria-hidden="true" /><span>{label}</span></div>;
 }
 
-function RotatingEventMedia({ event }: { event: EventRecord }) {
+export function RotatingEventMedia({ event, active = true }: { event: EventRecord; active?: boolean }) {
+  const mediaRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const items = useMemo(() => {
@@ -84,15 +44,28 @@ function RotatingEventMedia({ event }: { event: EventRecord }) {
   useEffect(() => setActiveIndex(0), [event.id]);
 
   useEffect(() => {
-    if (items.length < 2 || paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(media.matches);
+    update();
+    media.addEventListener('change', update);
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: .1 });
+    if (mediaRef.current) observer.observe(mediaRef.current);
+    return () => { observer.disconnect(); media.removeEventListener('change', update); };
+  }, []);
+
+  useEffect(() => { if (!active) setActiveIndex(0); }, [active]);
+
+  useEffect(() => {
+    if (items.length < 2 || paused || !active || !visible || reducedMotion) return;
     const timer = window.setInterval(() => setActiveIndex((value) => (value + 1) % items.length), 4800);
     return () => window.clearInterval(timer);
-  }, [items.length, paused]);
+  }, [items.length, paused, active, visible, reducedMotion]);
 
   if (!items.length) return <PlaceholderMedia alt={`Titulná fotografia udalosti ${event.title}`} />;
 
   return (
     <div
+      ref={mediaRef}
       className="rotating-media"
       role="group"
       aria-label={`${items[activeIndex].alt}. Fotografia ${activeIndex + 1} z ${items.length}.`}
@@ -106,7 +79,7 @@ function RotatingEventMedia({ event }: { event: EventRecord }) {
           <img className="rotating-image" src={item.src} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
         </span>
       ))}
-      {items.length > 1 && <div className="rotating-dots" aria-label="Výber fotografie">{items.map((item, index) => <button key={item.src} type="button" className={index === activeIndex ? 'active' : ''} onClick={() => setActiveIndex(index)} aria-label={`Zobraziť fotografiu ${index + 1} z ${items.length}`} aria-pressed={index === activeIndex} />)}</div>}
+      {active && items.length > 1 && <div className="rotating-dots" aria-label="Výber fotografie">{items.map((item, index) => <button key={item.src} type="button" className={index === activeIndex ? 'active' : ''} onClick={() => setActiveIndex(index)} aria-label={`Zobraziť fotografiu ${index + 1} z ${items.length}`} aria-pressed={index === activeIndex} />)}</div>}
     </div>
   );
 }
@@ -218,168 +191,5 @@ export function EventStory({ event, standalone = false }: { event: EventRecord; 
         <div className="share-story"><div><strong>Zdieľajte tento príbeh</strong><span>Priamy odkaz otvorí presne túto udalosť.</span></div><Button variant="outline" onClick={copyLink}><Copy /> Kopírovať odkaz</Button></div>
       </div>
     </article>
-  );
-}
-
-function EventCard({ event, onOpen }: { event: EventRecord; onOpen: (event: EventRecord) => void }) {
-  const isLong = event.story.length > 190 || Boolean(event.content?.length || event.gallery.length || event.video);
-  return (
-    <article id={`udalost-${event.id}`} className={`timeline-event ${event.featured ? 'featured-event' : ''}`}>
-      <div className="event-card-header">
-        <div className="event-card-meta">
-          {event.featured && <span className="milestone-badge"><Star fill="currentColor" /> Míľnik</span>}
-          <time dateTime={event.datePrecision === 'year' ? event.date.slice(0, 4) : event.date}>{formatDate(event)}</time>
-        </div>
-        <div className="event-categories">{event.categories.map((category) => <span key={category}>{category}</span>)}</div>
-      </div>
-      <div className="event-visual">
-        <RotatingEventMedia event={event} />
-      </div>
-      <div className="event-copy">
-        <h4>{event.title}</h4>
-        <p className="event-summary">{event.summary}{isLong && <> <button className="read-story" onClick={() => onOpen(event)}>Čítaj ďalej...</button></>}</p>
-        {!isLong && <p className="short-story">{event.story}</p>}
-      </div>
-    </article>
-  );
-}
-
-export function TimelineStory({ events }: { events: EventRecord[] }) {
-  const [year, setYear] = useState('all');
-  const [month, setMonth] = useState('all');
-  const [category, setCategory] = useState('all');
-  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
-  const [selected, setSelected] = useState<EventRecord | null>(null);
-  const [playerOpen, setPlayerOpen] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const previousUrl = useRef('/#pribeh');
-
-  const years = useMemo(() => [...new Set(events.map((event) => event.date.slice(0, 4)))].sort(), [events]);
-  const filtered = useMemo(() => events.map((event, stableIndex) => ({ event, stableIndex })).filter(({ event }) => year === 'all' || event.date.startsWith(year)).filter(({ event }) => month === 'all' || (event.datePrecision !== 'year' && String(new Date(`${event.date}T12:00:00`).getMonth() + 1) === month)).filter(({ event }) => category === 'all' || event.categories.includes(category)).sort((a, b) => { const result = a.event.date.localeCompare(b.event.date) || a.stableIndex - b.stableIndex; return order === 'asc' ? result : -result; }).map(({ event }) => event), [events, year, month, category, order]);
-  const activeEvent = filtered[currentIndex];
-  const timelineGroups = useMemo(() => groupTimelineEvents(filtered), [filtered]);
-  const hasFilters = year !== 'all' || month !== 'all' || category !== 'all';
-
-  const scrollToEvent = (event: EventRecord | undefined) => {
-    if (!event) return;
-    window.setTimeout(() => document.getElementById(`udalost-${event.id}`)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }), 50);
-  };
-
-  const startStory = () => {
-    if (!filtered.length) return;
-    setCurrentIndex(0); setPlayerOpen(true); setPlaying(true); scrollToEvent(filtered[0]);
-  };
-
-  const movePlayer = (direction: number) => {
-    const next = Math.min(Math.max(currentIndex + direction, 0), filtered.length - 1);
-    setCurrentIndex(next);
-    scrollToEvent(filtered[next]);
-    if (direction > 0 && filtered[next] && (filtered[next].story.length > 190 || filtered[next].content?.length)) setPlaying(false);
-  };
-
-  useEffect(() => {
-    if (!playing || !playerOpen || !activeEvent) return;
-    const timer = window.setTimeout(() => {
-      if (currentIndex >= filtered.length - 1) { setPlaying(false); return; }
-      movePlayer(1);
-    }, 5200);
-    return () => window.clearTimeout(timer);
-  }, [playing, playerOpen, currentIndex, filtered.length, activeEvent?.id]);
-
-  useEffect(() => {
-    if (currentIndex > filtered.length - 1) setCurrentIndex(0);
-  }, [filtered.length, currentIndex]);
-
-  useEffect(() => {
-    const onPopState = () => setSelected(null);
-    window.addEventListener('popstate', onPopState);
-    return () => window.removeEventListener('popstate', onPopState);
-  }, []);
-
-  const openEvent = (event: EventRecord) => {
-    previousUrl.current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
-    window.history.pushState({ event: event.id }, '', `/pribeh/${event.id}`);
-    setSelected(event);
-  };
-
-  const closeEvent = () => {
-    setSelected(null);
-    window.history.replaceState({}, '', previousUrl.current);
-  };
-
-  const clearFilters = () => { setYear('all'); setMonth('all'); setCategory('all'); };
-
-  return (
-    <main>
-      <header className="site-header">
-        <a className="brand" href="#zaciatok" aria-label="Uprostred prírody – domov"><span className="brand-mark"><Leaf aria-hidden="true" /></span><span className="brand-copy"><small>Rodový statok</small><span>Uprostred prírody</span></span></a>
-        <nav aria-label="Hlavná navigácia"><a className="nav-active" href="#pribeh">Príbeh statku</a><a href="#o-nas">O nás</a></nav>
-      </header>
-
-      <section id="zaciatok" className="hero">
-        <div className="hero-orbit orbit-one" aria-hidden="true" /><div className="hero-orbit orbit-two" aria-hidden="true" />
-        <div className="hero-copy">
-          <p className="eyebrow"><span /> Rodový statok · živý príbeh</p>
-          <h1>Príbeh miesta,<br />ktoré tvoríme <em>pre život.</em></h1>
-          <p className="hero-intro">Rodový statok nevznikne za jeden deň. Rastie spolu s nami – cez rozhodnutia, prácu, radosť, chyby aj chvíle, na ktoré nechceme zabudnúť.</p>
-          <div className="hero-actions"><Button size="lg" className="play-button" onClick={startStory} disabled={!filtered.length}><Play fill="currentColor" /> Prehrať náš príbeh</Button><a className="explore-link" href="#pribeh">alebo preskúmať vlastným tempom <ArrowDown /></a></div>
-        </div>
-        <div className="season-seal" aria-hidden="true"><span>od prvého dňa</span><strong>∞</strong><span>až po dnešok</span></div>
-      </section>
-
-      <section id="pribeh" className="story-section" aria-labelledby="story-title">
-        <div className="section-heading"><div><p className="eyebrow dark"><span /> Cesta časom</p><h2 id="story-title">Ako náš <strong>ROD</strong>ový statok<br />postupne <em>rastie</em></h2></div><p>Každý bod na ceste je jedna spomienka. Vyberte si obdobie alebo nechajte príbeh plynúť.</p></div>
-
-        <div className="timeline-tools">
-          <div className="filter-toolbar" aria-label="Filtrovanie príbehu">
-            <div className="filter-select"><Select value={year} onValueChange={(value) => setYear(String(value))}><SelectTrigger aria-label="Vybrať rok"><SelectValue>{year === 'all' ? 'Všetky roky' : year}</SelectValue></SelectTrigger><SelectContent><SelectItem value="all">Všetky roky</SelectItem>{years.map((item) => <SelectItem key={item} value={item}>{item}</SelectItem>)}</SelectContent></Select></div>
-            <div className="filter-select"><Select value={month} onValueChange={(value) => setMonth(String(value))}><SelectTrigger aria-label="Vybrať mesiac"><SelectValue>{month === 'all' ? 'Všetky mesiace' : monthNames[Number(month) - 1]}</SelectValue></SelectTrigger><SelectContent><SelectItem value="all">Všetky mesiace</SelectItem>{monthNames.map((name, index) => <SelectItem key={name} value={String(index + 1)}>{name[0].toUpperCase() + name.slice(1)}</SelectItem>)}</SelectContent></Select></div>
-            <button className="sort-toggle" onClick={() => setOrder((value) => value === 'asc' ? 'desc' : 'asc')} aria-label={order === 'asc' ? 'Zoradené od najstarších, prepnúť na najnovšie' : 'Zoradené od najnovších, prepnúť na najstaršie'} title={order === 'asc' ? 'Od najstarších' : 'Od najnovších'}>{order === 'asc' ? <ArrowDown /> : <ArrowUp />}</button>
-            <div className="category-filter" aria-label="Filtrovať podľa kategórie">
-              <button className={category === 'all' ? 'active' : ''} onClick={() => setCategory('all')}><Leaf /> Všetko</button>
-              {categories.map(({ name, icon: Icon }) => <button key={name} className={category === name ? 'active' : ''} onClick={() => setCategory(name)}><Icon /> {name}</button>)}
-            </div>
-            <button onClick={clearFilters} disabled={!hasFilters} className="clear-filters" aria-label="Zrušiť filtre" title="Zrušiť filtre"><RotateCcw /></button>
-          </div>
-        </div>
-
-        <div className="results-summary" aria-live="polite"><span>{filtered.length}</span> {filtered.length === 1 ? 'udalosť' : filtered.length > 1 && filtered.length < 5 ? 'udalosti' : 'udalostí'} v príbehu</div>
-        {filtered.length ? <div className="timeline-list">{timelineGroups.map((group) => (
-          <section key={group.key} className="timeline-period" aria-labelledby={`obdobie-${group.key}`}>
-            <h3 className="timeline-period-title" id={`obdobie-${group.key}`}><time dateTime={group.key}>{group.label}</time></h3>
-            <div className="timeline-period-grid">{group.events.map((event) => <EventCard key={event.id} event={event} onOpen={openEvent} />)}</div>
-          </section>
-        ))}</div> : <div className="empty-results"><Leaf /><h3>V tomto období ešte nič nie je</h3><p>Skúste inú kombináciu roka, mesiaca alebo kategórie.</p><Button variant="outline" onClick={clearFilters}><RotateCcw /> Zobraziť celý príbeh</Button></div>}
-      </section>
-
-      <section id="o-nas" className="about-section" aria-labelledby="about-title">
-        <div className="about-number">02</div>
-        <div><p className="eyebrow"><span /> O nás</p><h2 id="about-title">Za každým miestom<br />sú <em>ľudia.</em></h2></div>
-        <div className="about-copy">
-          <p className="about-opening">Kde bolo, tam bolo, uprostred prenádhernej prírody žil raz jeden malý chlapec v malom domčeku…</p>
-          <p>Takto začínajú všetky rozprávky na dobrú noc od času, keď sme si kúpili 1,5 ha pozemok, aby sme vytvorili RODOVÝ STATOK. Naša cesta sa začala, keď sa nám narodil synček a začali sme riešiť zdravú stravu. To ma najprv priviedlo k Zuzke z Liferesetu, kde som sa dozvedela o permakultúre, následne k Jaroslavovi Slobodovi a po prečítaní jeho webu ku knihám Anastasia od Vladimíra Megreho. Práve Anastázia pre nás vytvorila krásny obraz rodových statkov – pozemku nie menšieho než 1 ha, kde rodina vytvorí svoj kúsok raja.</p>
-          <p>Tri roky po tom, čo sme zatúžili mať rodový statok, sme sa presťahovali na náš pozemok, kde si tvoríme náš rodový statok, rajskú záhradu, náš priestor lásky.</p>
-          <p>Volám sa Zuzka a na rodovom statku žijem so svojím manželom, synom a dcérkou.</p>
-          <p>Tento blog je o mojom rodovom statku, o mojej ceste životom. Nech je pre vás inšpiráciou…</p>
-        </div>
-      </section>
-
-      <footer><a className="brand" href="#zaciatok"><span className="brand-mark"><Leaf /></span><span className="brand-copy"><small>Rodový statok</small><span>Uprostred prírody</span></span></a><p>Príbeh miesta, ktoré tvoríme pre život.</p><a href="#zaciatok">Späť na začiatok ↑</a></footer>
-
-      {playerOpen && activeEvent && <aside className="story-player" aria-label="Automatické prehrávanie príbehu">
-        <div className="player-top"><div><span>Príbeh sa prehráva</span><strong>{activeEvent.date.slice(0, 4)} · {activeEvent.title}</strong></div><Button variant="ghost" size="icon" onClick={() => { setPlayerOpen(false); setPlaying(false); }} aria-label="Ukončiť prehrávanie"><CircleStop /></Button></div>
-        <Progress value={((currentIndex + 1) / filtered.length) * 100}><ProgressLabel>Udalosť {currentIndex + 1}</ProgressLabel><ProgressValue>{currentIndex + 1} / {filtered.length}</ProgressValue></Progress>
-        <div className="player-controls"><Button variant="outline" size="icon" onClick={() => movePlayer(-1)} disabled={currentIndex === 0} aria-label="Predchádzajúca udalosť"><ChevronLeft /></Button><Button className="player-main" onClick={() => setPlaying((value) => !value)}>{playing ? <><Pause fill="currentColor" /> Pozastaviť</> : <><Play fill="currentColor" /> Pokračovať</>}</Button><Button variant="outline" size="icon" onClick={() => movePlayer(1)} disabled={currentIndex === filtered.length - 1} aria-label="Nasledujúca udalosť"><ChevronRight /></Button><Button variant="ghost" onClick={() => { setPlayerOpen(false); setPlaying(false); }}>Ukončiť</Button></div>
-      </aside>}
-
-      <Sheet open={Boolean(selected)} onOpenChange={(open) => !open && closeEvent()}>
-        <SheetContent side="right" className="event-sheet sm:!max-w-[min(860px,92vw)] !w-[min(860px,92vw)] !p-0 !gap-0" showCloseButton={false}>
-          <SheetTitle className="sr-only">{selected?.title}</SheetTitle><SheetDescription className="sr-only">Detail udalosti z príbehu statku</SheetDescription>
-          <button className="detail-close" onClick={closeEvent} aria-label="Zatvoriť detail príbehu"><ArrowLeft /> Späť na časovú os</button>
-          {selected && <EventStory event={selected} />}
-        </SheetContent>
-      </Sheet>
-    </main>
   );
 }
