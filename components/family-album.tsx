@@ -13,7 +13,7 @@ import { albumColumns, albumPeriod, estateDuration } from '@/lib/album';
 import { AboutSlideshow } from '@/components/about-slideshow';
 import type { EventRecord } from '@/lib/events';
 
-const categoryNames = ['Slameno-hlinený dom', 'Slamenno-hlinená chatka', 'Záhrada', 'Plot', 'Zvieratá', 'Rodina a život', 'Jazierko', 'Iné stavby', 'Rodový statok', 'Miľníky', 'Pribehy'];
+const categoryNames = ['Slameno-hlinený dom', 'Slameno-hlinená chatka', 'Záhrada', 'Plot', 'Zvieratá', 'Rodina a život', 'Jazierko', 'Iné stavby', 'Rodový statok', 'Miľníky', 'Pribehy'];
 const months = ['Január', 'Február', 'Marec', 'Apríl', 'Máj', 'Jún', 'Júl', 'August', 'September', 'Október', 'November', 'December'];
 const sizes = ['Malé', 'Stredné', 'Veľké'];
 type Anchor = { id: string; offset: number; bottom: boolean };
@@ -24,7 +24,7 @@ function AlbumTile({ event, zoom, active, onOpen }: { event: EventRecord; zoom: 
       <RotatingEventMedia event={event} active={active && zoom > 0} />
       <button className="album-tile-open" onClick={() => onOpen(event)} aria-label={`Otvoriť príbeh: ${event.title}, ${formatDate(event)}`} />
       {zoom > 0 && <div className="album-tile-copy">
-        <div className="album-tile-meta">{event.featured && <span className="album-milestone"><Star fill="currentColor" aria-hidden="true" /> Míľnik</span>}<time dateTime={event.datePrecision === 'year' ? event.date.slice(0, 4) : event.date}>{formatDate(event)}</time></div>
+        <div className="album-tile-meta">{event.featured && <span className="album-milestone"><Star fill="currentColor" aria-hidden="true" /> Míľnik</span>}<time dateTime={event.datePrecision === 'year' ? event.date.slice(0, 4) : event.datePrecision === 'month' ? event.date.slice(0, 7) : event.date}>{formatDate(event)}</time></div>
         <h2>{event.title}</h2>
         {zoom === 2 && <><div className="album-tile-categories">{event.categories.join(' · ')}</div><p>{event.summary}</p></>}
       </div>}
@@ -164,9 +164,10 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
     <main className="family-album">
       <Tabs value={tab} onValueChange={value => { capturePosition(); setTab(String(value)); setPlaying(false); }} className="album-shell">
         <header className="album-header">
-          <div className="album-brand"><Leaf aria-hidden="true" /><span>Rodový statok</span></div>
-          <h1>Uprostred prírody</h1>
-          <p>Som Zuzka a spolu s mojou rodinou — manželom Stankom a deťmi Zuzkou a Stankom — tvoríme rodový statok už <strong>{duration}</strong>.</p>
+          <img className="album-logo" src="/images/logo-uprostred-prirody.png" alt="" width={1202} height={1199} />
+          <div className="album-brand">Rodový statok</div>
+          <h1>Uprostred <em>prírody</em></h1>
+          <p><span className="album-intro-name">Som Zuzka.</span> Spolu s mojou rodinou tvoríme rodový statok už <strong>{duration}</strong>.</p>
           <TabsList variant="line" className="album-tabs" aria-label="Hlavná navigácia"><TabsTrigger value="events">Udalosti</TabsTrigger><TabsTrigger value="about">O nás</TabsTrigger></TabsList>
         </header>
         <TabsContent value="events" keepMounted className="album-events">
@@ -195,7 +196,10 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
             {filtered.length ? <div ref={gridRef} className={`album-grid album-size-${zoom}`} style={{ '--album-columns': columns } as CSSProperties}>{filtered.map(event => <AlbumTile key={event.id} event={event} zoom={zoom} active={tab === 'events' && !selected} onOpen={openEvent} />)}</div> : <div className="album-empty"><Leaf /><h2>V tomto období ešte nič nie je</h2><p>Skúste iný rok, mesiac alebo kategóriu.</p><button className="album-control" onClick={clearFilters}><RotateCcw /> Zobraziť všetky udalosti</button></div>}
           </div>
         </TabsContent>
-        <TabsContent value="about" keepMounted className="album-about-panel"><AboutUs active={tab === 'about'} /></TabsContent>
+        <TabsContent value="about" keepMounted className="album-about-tab">
+          <div className="album-toolbar album-about-toolbar"><h2 id="about-title">Za každým miestom sú <em>ľudia.</em></h2></div>
+          <div className="album-about-panel"><AboutUs active={tab === 'about'} /></div>
+        </TabsContent>
       </Tabs>
       {playerOpen && activeEvent && tab === 'events' && <aside className="album-player" aria-label="Prehrávanie príbehu">
         <span>{playerIndex + 1}/{filtered.length} · {activeEvent.title}</span>
@@ -227,14 +231,15 @@ function AboutUs({ active }: { active: boolean }) {
   }, [active]);
   return (
 <section ref={sectionRef} id="o-nas" className="album-about" aria-labelledby="about-title">
-        <h2 id="about-title">Za každým miestom<br />sú <em>ľudia.</em></h2>
         <AboutSlideshow active={active} />
         <div className="about-copy">
           <p className="about-opening">Kde bolo, tam bolo, uprostred prenádhernej prírody žil raz jeden malý chlapec v malom domčeku…</p>
-          <p>Takto začínajú všetky rozprávky na dobrú noc od času, keď sme si kúpili 1,5 ha pozemok, aby sme vytvorili RODOVÝ STATOK. Naša cesta sa začala, keď sa nám narodil synček a začali sme riešiť zdravú stravu. To ma najprv priviedlo k Zuzke z Liferesetu, kde som sa dozvedela o permakultúre, následne k Jaroslavovi Slobodovi a po prečítaní jeho webu ku knihám Anastasia od Vladimíra Megreho. Práve Anastázia pre nás vytvorila krásny obraz rodových statkov – pozemku nie menšieho než 1 ha, kde rodina vytvorí svoj kúsok raja.</p>
-          <p>Tri roky po tom, čo sme zatúžili mať rodový statok, sme sa presťahovali na náš pozemok, kde si tvoríme náš rodový statok, rajskú záhradu, náš priestor lásky.</p>
-          <p>Volám sa Zuzka a na rodovom statku žijem so svojím manželom, synom a dcérkou.</p>
-          <p>Tento blog je o mojom rodovom statku, o mojej ceste životom. Nech je pre vás inšpiráciou…</p>
+          <p>Takto začínajú všetky rozprávky na dobrú noc od času, keď sme si kúpili 1,5 ha pozemok, aby sme vytvorili <strong>rodový statok.</strong></p>
+          <p>Naša cesta sa začala, keď sa nám narodil synček a začali sme riešiť zdravú stravu. To ma najprv priviedlo k Zuzke z Liferesetu, kde som sa dozvedela o permakultúre, následne k Jaroslavovi Slobodovi a po prečítaní jeho webu ku knihám <em>Anastasia</em> od Vladimíra Megreho.</p>
+          <p>Práve Anastázia pre nás vytvorila krásny obraz rodových statkov – pozemku nie menšieho než 1 ha, kde rodina vytvorí svoj kúsok raja.</p>
+          <p>Tri roky po tom, čo sme zatúžili mať rodový statok, sme sa presťahovali na náš pozemok, kde si tvoríme náš rodový statok, rajskú záhradu, <strong>náš priestor lásky.</strong></p>
+          <blockquote className="about-personal-quote"><p>„Volám sa Zuzka a na rodovom statku žijem so svojím manželom, synom a dcérkou.“</p></blockquote>
+          <p className="about-closing">Tento blog je o mojom rodovom statku, o mojej ceste životom. <em>Nech je pre vás inšpiráciou…</em></p>
         </div>
       </section>
   );

@@ -9,6 +9,7 @@ import type { EventRecord, GalleryItem } from '@/lib/events';
 export function formatDate(event: EventRecord, long = false) {
   const date = new Date(`${event.date}T12:00:00`);
   if (event.datePrecision === 'year') return String(date.getFullYear());
+  if (event.datePrecision === 'month') return new Intl.DateTimeFormat('sk-SK', { month: 'long', year: 'numeric' }).format(date);
   const value = new Intl.DateTimeFormat('sk-SK', long ? { day: 'numeric', month: 'long', year: 'numeric' } : { day: 'numeric', month: 'short', year: 'numeric' }).format(date);
   return event.approximateDate ? `približne ${value}` : value;
 }
