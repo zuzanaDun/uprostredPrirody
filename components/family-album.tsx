@@ -23,8 +23,9 @@ function AlbumTile({ event, zoom, active, onOpen }: { event: EventRecord; zoom: 
     <article id={`udalost-${event.id}`} data-event-id={event.id} className="album-tile">
       <RotatingEventMedia event={event} active={active && zoom > 0} />
       <button className="album-tile-open" onClick={() => onOpen(event)} aria-label={`Otvoriť príbeh: ${event.title}, ${formatDate(event)}`} />
+      {zoom > 0 && event.featured && <span className="album-milestone album-milestone-badge"><Star fill="currentColor" aria-hidden="true" /> Míľnik</span>}
       {zoom > 0 && <div className="album-tile-copy">
-        <div className="album-tile-meta">{event.featured && <span className="album-milestone"><Star fill="currentColor" aria-hidden="true" /> Míľnik</span>}<time dateTime={event.datePrecision === 'year' ? event.date.slice(0, 4) : event.datePrecision === 'month' ? event.date.slice(0, 7) : event.date}>{formatDate(event)}</time></div>
+        <div className="album-tile-meta"><time dateTime={event.datePrecision === 'year' ? event.date.slice(0, 4) : event.datePrecision === 'month' ? event.date.slice(0, 7) : event.date}>{formatDate(event)}</time></div>
         <h2>{event.title}</h2>
         {zoom === 2 && <><div className="album-tile-categories">{event.categories.join(' · ')}</div><p>{event.summary}</p></>}
       </div>}

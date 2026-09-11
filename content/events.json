@@ -199,5 +199,106 @@
     ],
     "video": null,
     "status": "published"
+  },
+  {
+    "id": "stavba-slameno-hlineneho-domu",
+    "date": "2019-03-01",
+    "datePrecision": "month",
+    "approximateDate": false,
+    "title": "Stavba slameno-hlineného domu",
+    "categories": ["Miľníky", "Slameno-hlinený dom"],
+    "summary": "V marci 2019 sme začali stavať slameno-hlinený dom.",
+    "story": "",
+    "featured": true,
+    "location": "",
+    "coverImage": "/images/events/dom-zaklady.jpg",
+    "gallery": [
+      { "src": "/images/events/dom-zaklady.jpg", "alt": "Pripravené základy slameno-hlineného domu" },
+      { "src": "/images/events/dom-dreveny-krov.jpg", "alt": "Drevená konštrukcia a krov rozostavaného domu" },
+      { "src": "/images/events/dom-slamene-steny.jpg", "alt": "Slamené balíky ukladané do drevenej konštrukcie domu" }
+    ],
+    "video": null,
+    "status": "published"
+  },
+  {
+    "id": "nase-kozy",
+    "date": "2019-06-01",
+    "datePrecision": "month",
+    "approximateDate": false,
+    "title": "Naše kozy",
+    "categories": ["Zvieratá"],
+    "summary": "V júni 2019 k nám pribudli kozy.",
+    "story": "",
+    "featured": false,
+    "location": "",
+    "coverImage": "/images/events/nase-kozy-portret-zboku.jpg",
+    "gallery": [
+      { "src": "/images/events/nase-kozy-portret-zboku.jpg", "alt": "Detail hnedej kozy s výraznými rohmi na zelenej pastvine" },
+      { "src": "/images/events/nase-kozy-portret-spredu.jpg", "alt": "Čelný portrét hnedej kozy s rohmi" },
+      { "src": "/images/events/nase-kozy-na-pastvine.jpg", "alt": "Hnedá koza stojaca na zelenej pastvine" }
+    ],
+    "video": null,
+    "status": "published"
+  },
+  {
+    "id": "vysadba-vetrolamu-z-japonskych-topolov",
+    "date": "2020-04-01",
+    "datePrecision": "month",
+    "approximateDate": false,
+    "title": "Výsadba vetrolamu z japonských topoľov",
+    "categories": ["Plot"],
+    "summary": "V apríli 2020 sme vysadili vetrolam z japonských topoľov.",
+    "story": "",
+    "featured": false,
+    "location": "",
+    "coverImage": "/images/events/vetrolam-vysadbove-jamy.jpg",
+    "gallery": [
+      { "src": "/images/events/vetrolam-vysadbove-jamy.jpg", "alt": "Rad pripravených výsadbových jám pre vetrolam na lúke" },
+      { "src": "/images/events/vetrolam-vysadene-topole.jpg", "alt": "Čerstvo vysadené japonské topole pozdĺž oplotenia" }
+    ],
+    "video": null,
+    "status": "published"
+  },
+  {
+    "id": "vysadba-ovocnych-krikov",
+    "date": "2020-04-01",
+    "datePrecision": "month",
+    "approximateDate": false,
+    "title": "Výsadba ovocných kríkov",
+    "categories": ["Záhrada"],
+    "summary": "V apríli 2020 sme vysadili ovocné kríky.",
+    "story": "",
+    "featured": false,
+    "location": "",
+    "coverImage": "/images/events/ovocne-kriky-sadenie.jpg",
+    "gallery": [
+      { "src": "/images/events/ovocne-kriky-sadenie.jpg", "alt": "Rodinná výsadba ovocných kríkov na pozemku" },
+      { "src": "/images/events/ovocne-kriky-riadky.jpg", "alt": "Riadky čerstvo vysadených ovocných kríkov na lúke" },
+      { "src": "/images/events/ovocne-kriky-vysadba-z-dialky.jpg", "alt": "Pohľad na výsadbu ovocných kríkov naprieč pozemkom" }
+    ],
+    "video": null,
+    "status": "published"
+  },
+  {
+    "id": "jazierko",
+    "date": "2020-05-01",
+    "datePrecision": "month",
+    "approximateDate": false,
+    "title": "Jazierko",
+    "categories": ["Jazierko"],
+    "summary": "V máji 2020 sme začali budovať jazierko.",
+    "story": "",
+    "featured": false,
+    "location": "",
+    "coverImage": "/images/events/jazierko-vykop.jpg",
+    "gallery": [
+      { "src": "/images/events/jazierko-vykop.jpg", "alt": "Bager hĺbiaci jamu pre jazierko pri fóliovníku" },
+      { "src": "/images/events/jazierko-vykop-hotovy.jpg", "alt": "Vyhĺbená jama budúceho jazierka" },
+      { "src": "/images/events/jazierko-folia.jpg", "alt": "Ukladanie ochrannej vrstvy a fólie do jazierka" },
+      { "src": "/images/events/jazierko-napustanie.jpg", "alt": "Prvé napúšťanie nového jazierka vodou" },
+      { "src": "/images/events/jazierko-napustene.jpg", "alt": "Napustené jazierko pri fóliovníku" }
+    ],
+    "video": null,
+    "status": "published"
   }
 ]
