@@ -315,8 +315,6 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
   .about-photo { object-fit: cover; object-position: center; }
   .about-photo-atmosphere { display: none; }
 }
-.album-player { position: fixed; z-index: 35; display: flex; align-items: center; gap: 4px; bottom: 12px; right: 12px; max-width: calc(100vw - 24px); padding: 8px; border: 1px solid #bad0b0; border-radius: 10px; background: rgba(237,243,233,.97); box-shadow: 0 4px 24px #14281b33; }
-.album-player > span { max-width: 220px; padding-inline: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .85rem; }
 @media (max-width: 640px) {
   .album-header { grid-template-columns: 52px minmax(0, 1fr); column-gap: 12px; padding: 14px 16px 0; }
   .album-logo { width: 52px; height: 52px; }
@@ -324,15 +322,16 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
   .album-header > p { max-width: none; margin: 10px 0; font-size: 1rem; line-height: 1.45; }
   .album-header h1 { font-size: clamp(1.65rem, 6.5vw, 2.4rem); }
   .family-album .album-tabs { height: 38px; }
-  .album-toolbar { padding: 4px 10px; gap: 0; }
-  .album-period { width: 100%; font-size: .875rem; padding: 4px 0; }
-  .album-actions { width: 100%; justify-content: flex-end; }
-  .album-actions > :first-child { margin-right: auto; }
+  .album-toolbar { flex-wrap: nowrap; padding: 4px 10px; gap: 4px; }
+  .album-period { flex: 1 1 auto; width: auto; font-size: .875rem; padding: 4px 0; white-space: nowrap; }
+  .album-actions { flex: 0 0 auto; width: auto; gap: 2px; justify-content: flex-end; }
+  .album-actions > :first-child { margin-right: 0; }
+  .album-control { min-width: 32px; padding-inline: 6px; }
+  .album-zoom { gap: 1px; padding-left: 3px; }
+  .album-zoom-field, .album-zoom [data-slot='slider'] { width: 52px; }
   .album-tile-copy { padding: 25px 8px 8px; }
   .album-tile-meta { font-size: .75rem; }
   .album-tile .rotating-dots button { width: 24px; height: 28px; }
-  .album-player { flex-wrap: wrap; }
-  .album-player > span { max-width: 100%; flex-basis: 100%; }
 }
 
 /* Story player */

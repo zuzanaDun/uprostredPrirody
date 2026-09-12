@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
-import { ArrowLeft, ChevronLeft, ChevronRight, Leaf, Minus, Pause, Play, Plus, RotateCcw, SlidersHorizontal, Star, X } from 'lucide-react';
+import { ArrowLeft, Leaf, Minus, Plus, RotateCcw, SlidersHorizontal, Star } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Slider } from '@/components/ui/slider';
 import { Field as SliderField } from '@base-ui/react/field';
@@ -44,9 +44,6 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
   const [height, setHeight] = useState(0);
   const [period, setPeriod] = useState('');
   const [selected, setSelected] = useState<EventRecord | null>(null);
-  const [playerOpen, setPlayerOpen] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [playerIndex, setPlayerIndex] = useState(0);
   const viewportRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const anchorRef = useRef<Anchor | null>(null);
@@ -62,7 +59,6 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
   const columns = albumColumns(width, zoom);
   const filterKey = `${year}|${month}|${category}`;
   const hasFilters = year !== 'all' || month !== 'all' || category !== 'all';
-  const activeEvent = filtered[playerIndex];
 
   useEffect(() => {
     const refresh = () => setDuration(estateDuration(new Date()));
@@ -123,28 +119,8 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
     setZoom(Math.max(0, Math.min(2, value)));
   };
   const clearFilters = () => { setYear('all'); setMonth('all'); setCategory('all'); };
-  useEffect(() => { setPlaying(false); setPlayerOpen(false); setPlayerIndex(0); }, [filterKey]);
-
-  const scrollToEvent = useCallback((event: EventRecord | undefined) => {
-    if (!event || !viewportRef.current) return;
-    const tile = document.getElementById(`udalost-${event.id}`);
-    if (tile) viewportRef.current.scrollTo({ top: tile.offsetTop - (viewportRef.current.clientHeight - tile.offsetHeight) / 2, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  }, []);
-  const movePlayer = (direction: number) => {
-    const next = Math.max(0, Math.min(filtered.length - 1, playerIndex + direction));
-    setPlayerIndex(next); scrollToEvent(filtered[next]);
-  };
-  useEffect(() => {
-    if (!playing || !playerOpen || tab !== 'events' || selected) return;
-    const timer = window.setTimeout(() => {
-      if (playerIndex >= filtered.length - 1) { setPlaying(false); return; }
-      setPlayerIndex(playerIndex + 1); scrollToEvent(filtered[playerIndex + 1]);
-    }, 5200);
-    return () => window.clearTimeout(timer);
-  }, [playing, playerOpen, tab, selected, playerIndex, filtered, scrollToEvent]);
-
   const openEvent = (event: EventRecord) => {
-    capturePosition(); setPlaying(false);
+    capturePosition();
     previousUrl.current = `${location.pathname}${location.search}${location.hash}`;
     history.pushState({ albumEvent: event.id }, '', `/pribeh/${event.id}`);
     setSelected(event);
@@ -163,7 +139,7 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
 
   return (
     <main className="family-album">
-      <Tabs value={tab} onValueChange={value => { capturePosition(); setTab(String(value)); setPlaying(false); }} className="album-shell">
+      <Tabs value={tab} onValueChange={value => { capturePosition(); setTab(String(value)); }} className="album-shell">
         <header className="album-header">
           <img className="album-logo" src="/images/logo-uprostred-prirody.png" alt="" width={1202} height={1199} />
           <div className="album-brand">Rodový statok</div>
@@ -175,7 +151,7 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
           <div className="album-toolbar">
             <div className="album-period" aria-label="Práve zobrazené obdobie">{period || (filtered.length ? albumPeriod(filtered[filtered.length - 1]) : 'Žiadne udalosti')}</div>
             <div className="album-actions">
-              <Popover><PopoverTrigger className={`album-control ${hasFilters ? 'is-active' : ''}`} aria-label={hasFilters ? 'Filtre, aktívne filtrovanie' : 'Filtre'}><SlidersHorizontal /><span>Filtre{hasFilters ? ' •' : ''}</span></PopoverTrigger>
+              <Popover><PopoverTrigger className={`album-control ${hasFilters ? 'is-active' : ''}`} aria-label={hasFilters ? 'Filtre, aktívne filtrovanie' : 'Filtre'}><SlidersHorizontal /></PopoverTrigger>
                 <PopoverContent className="album-filters" align="end">
                   <PopoverTitle>Filtrovať udalosti</PopoverTitle>
                   <Select value={year} onValueChange={v => setYear(String(v))}><SelectTrigger aria-label="Vybrať rok"><SelectValue>{year === 'all' ? 'Všetky roky' : year}</SelectValue></SelectTrigger><SelectContent><SelectItem value="all">Všetky roky</SelectItem>{years.map(y => <SelectItem key={y} value={y}>{y}</SelectItem>)}</SelectContent></Select>
@@ -185,7 +161,6 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
                   <button className="album-control" onClick={clearFilters} disabled={!hasFilters}><RotateCcw /> Zrušiť filtre</button>
                 </PopoverContent>
               </Popover>
-              <button className="album-control album-play" disabled={!filtered.length} aria-label="Prehrať náš príbeh" onClick={() => { setPlayerIndex(0); setPlayerOpen(true); setPlaying(true); scrollToEvent(filtered[0]); }}><Play /></button>
               <div className="album-zoom" role="group" aria-label="Veľkosť dlaždíc">
                 <button className="album-control" aria-label="Zmenšiť dlaždice" disabled={zoom === 0} onClick={() => changeZoom(zoom - 1)}><Minus /></button>
                 <SliderField.Root className="album-zoom-field"><SliderField.Label className="sr-only">Veľkosť dlaždíc: {sizes[zoom]}</SliderField.Label><Slider value={[zoom]} min={0} max={2} step={1} onValueChange={value => changeZoom(Number(Array.isArray(value) ? value[0] : value))} /></SliderField.Root>
@@ -202,13 +177,6 @@ export function FamilyAlbum({ events, initialNow }: { events: EventRecord[]; ini
           <div className="album-about-panel"><AboutUs active={tab === 'about'} /></div>
         </TabsContent>
       </Tabs>
-      {playerOpen && activeEvent && tab === 'events' && <aside className="album-player" aria-label="Prehrávanie príbehu">
-        <span>{playerIndex + 1}/{filtered.length} · {activeEvent.title}</span>
-        <button className="album-control" onClick={() => movePlayer(-1)} disabled={playerIndex === 0} aria-label="Predchádzajúca udalosť"><ChevronLeft /></button>
-        <button className="album-control" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pozastaviť príbeh' : 'Pokračovať v príbehu'}>{playing ? <Pause /> : <Play />}</button>
-        <button className="album-control" onClick={() => movePlayer(1)} disabled={playerIndex === filtered.length - 1} aria-label="Nasledujúca udalosť"><ChevronRight /></button>
-        <button className="album-control" onClick={() => { setPlaying(false); setPlayerOpen(false); }} aria-label="Ukončiť prehrávanie"><X /></button>
-      </aside>}
       <Sheet open={Boolean(selected)} onOpenChange={open => { if (!open) closeEvent(); }}>
         <SheetContent side="right" className="event-sheet sm:!max-w-[min(860px,92vw)] !w-[min(860px,92vw)] !p-0 !gap-0" showCloseButton={false}>
           <SheetTitle className="sr-only">{selected?.title}</SheetTitle><SheetDescription className="sr-only">Detail udalosti z rodinného fotoalbumu</SheetDescription>
