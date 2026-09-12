@@ -17,6 +17,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -39,6 +41,8 @@
   --muted-foreground: #607168;
   --accent: #c49a52;
   --accent-foreground: #1c352d;
+  --popover: #f8fbf4;
+  --popover-foreground: #16342b;
   --border: #cbc8b9;
   --input: #cbc8b9;
   --ring: #c49a52;
@@ -58,6 +62,8 @@
   --muted-foreground: #bbcabf;
   --accent: #d0aa65;
   --accent-foreground: #0f2d24;
+  --popover: #153329;
+  --popover-foreground: #f6f0df;
   --border: #395449;
   --input: #395449;
   --ring: #d0aa65;
@@ -228,7 +234,7 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
 .album-brand { grid-column: 2; align-self: end; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .2em; font-size: .75rem; font-weight: 600; color: #527658; }
 .album-header h1 { grid-column: 2; margin: 0; max-width: none; font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -.035em; line-height: 1.12; text-wrap: balance; }
 .album-header h1 em { color: #52734a; font-weight: 400; }
-.album-header > p { grid-column: 1 / -1; max-width: min(65%, 800px); margin: 13px 0 15px; color: #48604b; font-family: Georgia, 'Times New Roman', serif; font-size: 1.0625rem; line-height: 1.55; text-wrap: pretty; }
+.album-header > p { grid-column: 2; max-width: 38rem; margin: 8px 0 15px; color: #48604b; font-family: Georgia, 'Times New Roman', serif; font-size: 1.0625rem; line-height: 1.5; text-wrap: pretty; }
 .album-intro-name { color: #254e35; font-style: italic; }
 .album-header > p strong { color: #254e35; font-weight: 600; white-space: nowrap; }
 .family-album .album-tabs { grid-column: 1 / -1; height: 42px; gap: 24px; padding: 0; margin: 0; border: 0; }
@@ -251,9 +257,11 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
 .album-zoom [data-slot='slider-track'] { background: #c7d7c0; }
 .album-zoom [data-slot='slider-range'] { background: #5c825d; }
 .album-zoom [data-slot='slider-thumb'] { border-color: #426648; background: #416647; }
-.album-filters { width: min(320px, calc(100vw - 24px)); padding: 16px; background: #edf3e9; color: #25452e; }
+.album-filters { width: min(320px, calc(100vw - 24px)); padding: 16px; background: #edf3e9; color: #25452e; box-shadow: 0 12px 32px rgba(20, 48, 32, .24); }
 .album-filters [data-slot='select-trigger'] { width: 100%; min-height: 40px; background: #f6f9f2; }
 .album-filters > span { color: #59705d; font-size: .8rem; }
+[data-slot='select-content'] { background: #f8fbf4; color: #16342b; box-shadow: 0 12px 28px rgba(20, 48, 32, .24); }
+[data-slot='select-item']:focus { background: #dce8d8; color: #17392f; }
 .album-viewport { min-height: 0; height: 100%; overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; overflow-anchor: none; scrollbar-color: #91aa8d #edf3e9; scrollbar-width: thin; scroll-behavior: auto; }
 .album-viewport:focus-visible { outline: 2px solid #426648; outline-offset: -2px; }
 .album-grid { position: relative; display: grid; grid-template-columns: repeat(var(--album-columns), minmax(0, 1fr)); gap: 3px; background: var(--background); }
