@@ -358,11 +358,10 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
 .player-main { min-width: 8.8rem; background: #d0aa65; color: #17352c !important; }
 
 /* Story detail */
-.album-size-2 .album-tile { aspect-ratio: auto; align-self: start; background: #f8fbf4; }
-.album-size-2 .album-tile > .rotating-media, .album-size-2 .album-tile > .placeholder-media { position: relative; aspect-ratio: 4 / 3; height: auto; }
-.album-size-2 .album-tile-copy { position: relative; inset: auto; background: #f8fbf4; color: #25452e; padding: 16px; }
-.album-size-2 .album-tile-copy h2, .album-size-2 .album-tile-copy p { display: block; overflow: visible; color: #25452e; -webkit-line-clamp: unset; }
-.album-size-2 .album-tile-categories { color: #526b55; }
+.album-size-2 .album-tile { display: flex; flex-direction: column; justify-content: flex-end; align-self: start; }
+.album-size-2 .album-tile-copy { position: relative; inset: auto; margin-top: 30%; padding: 56px 16px 16px; }
+.album-size-2 .album-tile-copy h2, .album-size-2 .album-tile-copy p { display: block; overflow: visible; -webkit-line-clamp: unset; }
+.album-size-2 .album-tile-copy .event-story-link { color: #e1eed8; }
 .event-story-link { position: relative; z-index: 5; pointer-events: auto; display: inline-block; margin-top: 12px; color: #315f3e; font-size: 1rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 .album-stories { overflow-y: auto; min-height: 0; }
 .story-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 420px)); gap: 20px; padding: 20px; }
