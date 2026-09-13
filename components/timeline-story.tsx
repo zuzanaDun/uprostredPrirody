@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Copy, Leaf, Play, Sparkles, Star, X } from '
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import type { EventRecord, GalleryItem } from '@/lib/events';
+import type { StoryRecord } from '@/lib/stories';
 
 export function formatDate(event: EventRecord, long = false) {
   const date = new Date(`${event.date}T12:00:00`);
@@ -161,7 +162,7 @@ function Gallery({ items }: { items: GalleryItem[] }) {
   );
 }
 
-export function EventStory({ event, standalone = false }: { event: EventRecord; standalone?: boolean }) {
+export function EventStory({ event, standalone = false }: { event: StoryRecord; standalone?: boolean }) {
   const copyLink = async () => {
     const url = `${window.location.origin}/pribeh/${event.id}`;
     try { await navigator.clipboard.writeText(url); } catch { window.prompt('Skopírujte odkaz na príbeh:', url); }
@@ -189,7 +190,7 @@ export function EventStory({ event, standalone = false }: { event: EventRecord; 
         })}
         <Gallery items={event.gallery} />
         {event.video && <section className="detail-video" aria-labelledby="video-title"><div className="detail-section-label"><span>▶</span><h3 id="video-title">Video</h3></div><VideoBlock event={event} /></section>}
-        <div className="share-story"><div><strong>Zdieľajte tento príbeh</strong><span>Priamy odkaz otvorí presne túto udalosť.</span></div><Button variant="outline" onClick={copyLink}><Copy /> Kopírovať odkaz</Button></div>
+        <div className="share-story"><div><strong>Zdieľajte tento príbeh</strong><span>Priamy odkaz otvorí tento článok.</span></div><Button variant="outline" onClick={copyLink}><Copy /> Kopírovať odkaz</Button></div>
       </div>
     </article>
   );

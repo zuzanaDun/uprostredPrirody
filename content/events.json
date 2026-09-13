@@ -5,9 +5,11 @@
     "datePrecision": "year",
     "approximateDate": false,
     "title": "Ako sa začala moja cesta",
-    "categories": ["Pribehy", "Rodový statok", "Miľníky"],
+    "categories": [
+      "Rodový statok",
+      "Miľníky"
+    ],
     "summary": "Knihy Zvoniace cedry Ruska vo mne zapálili túžbu vytvoriť rodový statok – priestor lásky, zdravia, slobody a života v súlade s prírodou.",
-    "story": "V roku **2014** som prečítala knihy *Zvoniace cedry Ruska* od Vladimíra Megreho a v tej chvíli vo mne zahorela obrovská, neoblomná túžba vytvoriť vlastný rodový statok. Dávalo mi to obrovský a okamžitý zmysel, úplne bez akejkoľvek pochybnosti. Videla som v tom nesmierne praktickú cestu: ako si pestovať čisté, zdravé plody, ako žiť v úplnom súlade s prírodou, stať sa sebestačnou a vytvoriť prostredie pre výchovu šťastných a slobodných detí. Zároveň to však pre mňa znamenalo hlboký duchovný rozmer, zrýchľovanie mysle a nespočetné množstvo praktických aj hĺbkových návodov pre každodenný život. Cítila som, že práve rodový statok je tým kľúčom, ktorý v sebe nesie odpoveď na všetko.\n\nAle moja cesta sa v skutočnosti začala ešte oveľa skôr. Spustila ju **akási vnútorná nespokojnosť**, tichý, no vytrvalý hlas, ktorý sa ozýval z môjho vnútra. Mala som akoby všetko, čo by človek mohol chcieť, a predsa mi neustále niečo podstatné chýbalo. V duchu ma prenasledovali neúprosné otázky: *Toto je naozaj všetko? Ozaj? Ale prečo sme chorí? Prečo sú ľudia nešťastní? Prečo je to hlavne o peniazoch? Prečo deti plačú, keď idú do škôlky? Prečo...*\n\nTieto pálčivé otazníky ma nenechali chladnou, a tak som hľadala. Hľadala som spôsoby, ako sa zdravo stravovať, ako si sama vlastnoručne pestovať poctivé potraviny... až som sa cez toto neúnavné pátranie dostala práve k spomínaným knihám. Práve v nich som konečne **našla odpovede**, po ktorých moje srdce tak dlho prahlo. Neboli to len povrchné myšlienky či rýchle riešenia, aké nám dnes ponúka táto spoločnosť, ale niečo nesmierne hlboké. Objavila som pravdu o múdrosti našich predkov, o tom, kto vlastne vo svojej podstate sme, aký je skutočný zmysel nášho bytia a aké je naše pravé predurčenie.\n\nA tak som započala moju novú cestu. Cestu tak nepochopiteľnú pre moje okolie...\n\nPre ľudí v mojom blízkosti, zvyknutých na tradičné vzorce, relatívne bežné istoty a moderné tempo života, bol môj nový pohľad na svet doslova šokom. Pozerali sa na mňa s nepochopením, s obavami a niekedy aj s neskrývanou ľútosťou. **V ich očiach som opúšťala fungujúci svet** a vydávala sa na romantickú, no v ich predstave nepraktickú a ťažkú cestu. Pýtali sa ma, prečo chcem opustiť pohodlie moderného systému, prečo sa chcem venovať práci so zemou a myšlienkam, ktoré sa im zdali utopické, naivné či priam nebezpečne vzdialené od reality všedného dňa.\n\nČasto som čelila spochybňovaniu, nevyžiadaným radám a tichému odstupu. Vykročiť z davu a ísť proti prúdu totiž nevytvára tlak len na človeka, ktorý sa rozhodol zmeniť svoj život, ale nevedomky stavia zrkadlo aj ľuďom naokolo. No zatiaľ čo oni videli krok späť a zbytočný únik z reality, ja som v hĺbke svojej duše cítila ten **najväčší a najzdravší posun vpred**. Pre nich to bol bláznivý nápad, pre mňa to bol prvý skutočný krok k pravde, k podstate a ku skutočnému životu.\n\nSúčasne ma však každé jedno nepochopenie iba utvrdzovalo v tom, že som sa rozhodla správne. Vnútri ma hrial neopísateľný pokoj, pretože moja duša už poznala odpovede, ktoré tak dlho hľadala. Vedela som, že ma čaká výzva, ktorá si vyžiada odvahu, vytrvalosť a opustenie mnohých starých vzorcov. Avšak vedomie, že začínam tvoriť **priestor lásky pre seba a svoje deti**, domov, ktorý uzdravuje a navracia človeka k jeho pravému predurčeniu, bolo tisícnásobne silnejšie než akýkoľvek názor či pochybnosť z vonkajšieho sveta.",
     "featured": true,
     "location": "",
     "coverImage": "/images/events/ako-sa-zacala-moja-cesta/zvoniace-cedry-seria.jpg",
@@ -29,7 +31,8 @@
       }
     ],
     "video": null,
-    "status": "published"
+    "status": "published",
+    "storyId": "ako-sa-zacala-moja-cesta"
   },
   {
     "id": "kupa-pozemku",
@@ -37,14 +40,18 @@
     "datePrecision": "day",
     "approximateDate": false,
     "title": "Kúpa pozemku",
-    "categories": ["Miľníky"],
+    "categories": [
+      "Miľníky"
+    ],
     "summary": "19. júna 2015 sme kúpili pozemok pre náš rodový statok.",
-    "story": "",
     "featured": true,
     "location": "",
     "coverImage": "/images/events/kupa-pozemku.jpg",
     "gallery": [
-      { "src": "/images/events/kupa-pozemku.jpg", "alt": "Trávnatý pozemok pri stromoch s balíkmi sena" }
+      {
+        "src": "/images/events/kupa-pozemku.jpg",
+        "alt": "Trávnatý pozemok pri stromoch s balíkmi sena"
+      }
     ],
     "video": null,
     "status": "published"
@@ -55,17 +62,31 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Stavba slameno-hlinenej chatky",
-    "categories": ["Miľníky", "Slameno-hlinená chatka"],
+    "categories": [
+      "Miľníky",
+      "Slameno-hlinená chatka"
+    ],
     "summary": "V auguste 2015 sme stavali slameno-hlinenú chatku.",
-    "story": "",
     "featured": true,
     "location": "",
     "coverImage": "/images/events/chatka-drevena-podlaha.jpg",
     "gallery": [
-      { "src": "/images/events/chatka-drevena-podlaha.jpg", "alt": "Rodina na drevenej podlahe rozostavanej chatky" },
-      { "src": "/images/events/chatka-drevena-konstrukcia.jpg", "alt": "Drevená konštrukcia chatky s rozostavanou strechou" },
-      { "src": "/images/events/chatka-stavba-strechy.jpg", "alt": "Práce na drevenej streche chatky" },
-      { "src": "/images/events/chatka-slamene-steny.jpg", "alt": "Chatka so strechou a stenami vyplnenými slamenými balíkmi" }
+      {
+        "src": "/images/events/chatka-drevena-podlaha.jpg",
+        "alt": "Rodina na drevenej podlahe rozostavanej chatky"
+      },
+      {
+        "src": "/images/events/chatka-drevena-konstrukcia.jpg",
+        "alt": "Drevená konštrukcia chatky s rozostavanou strechou"
+      },
+      {
+        "src": "/images/events/chatka-stavba-strechy.jpg",
+        "alt": "Práce na drevenej streche chatky"
+      },
+      {
+        "src": "/images/events/chatka-slamene-steny.jpg",
+        "alt": "Chatka so strechou a stenami vyplnenými slamenými balíkmi"
+      }
     ],
     "video": null,
     "status": "published"
@@ -76,14 +97,18 @@
     "datePrecision": "day",
     "approximateDate": false,
     "title": "Nový člen rodiny: ŤAPKO",
-    "categories": ["Zvieratá"],
+    "categories": [
+      "Zvieratá"
+    ],
     "summary": "3. mája 2016 pribudol do našej rodiny Ťapko.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/novy-clen-rodiny-tapko.jpg",
     "gallery": [
-      { "src": "/images/events/novy-clen-rodiny-tapko.jpg", "alt": "Čiernobiele šteniatko Ťapko na červenom vodidle pri chlapcovi na pozemku" }
+      {
+        "src": "/images/events/novy-clen-rodiny-tapko.jpg",
+        "alt": "Čiernobiele šteniatko Ťapko na červenom vodidle pri chlapcovi na pozemku"
+      }
     ],
     "video": null,
     "status": "published"
@@ -94,18 +119,34 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Hlinené omietky na chatku",
-    "categories": ["Slameno-hlinená chatka"],
+    "categories": [
+      "Slameno-hlinená chatka"
+    ],
     "summary": "V júli 2016 sme na slameno-hlinenú chatku nanášali hlinené omietky.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/hlinene-omietky-chatka-priprava.jpg",
     "gallery": [
-      { "src": "/images/events/hlinene-omietky-chatka-priprava.jpg", "alt": "Príprava slamených stien chatky na hlinené omietky" },
-      { "src": "/images/events/hlinene-omietky-miesanie.jpg", "alt": "Fúrik, vedrá a miešadlo s pripravenou hlinenou omietkou" },
-      { "src": "/images/events/hlinene-omietky-interier.jpg", "alt": "Nanášanie hlinenej omietky na vnútornú slamenú stenu chatky" },
-      { "src": "/images/events/hlinene-omietky-exterier.jpg", "alt": "Vonkajšie steny chatky pokryté hlinenou omietkou" },
-      { "src": "/images/events/hlinene-omietky-praca.jpg", "alt": "Miešanie a nanášanie hlinenej omietky na chatku" }
+      {
+        "src": "/images/events/hlinene-omietky-chatka-priprava.jpg",
+        "alt": "Príprava slamených stien chatky na hlinené omietky"
+      },
+      {
+        "src": "/images/events/hlinene-omietky-miesanie.jpg",
+        "alt": "Fúrik, vedrá a miešadlo s pripravenou hlinenou omietkou"
+      },
+      {
+        "src": "/images/events/hlinene-omietky-interier.jpg",
+        "alt": "Nanášanie hlinenej omietky na vnútornú slamenú stenu chatky"
+      },
+      {
+        "src": "/images/events/hlinene-omietky-exterier.jpg",
+        "alt": "Vonkajšie steny chatky pokryté hlinenou omietkou"
+      },
+      {
+        "src": "/images/events/hlinene-omietky-praca.jpg",
+        "alt": "Miešanie a nanášanie hlinenej omietky na chatku"
+      }
     ],
     "video": null,
     "status": "published"
@@ -116,16 +157,26 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Plot okolo celého pozemku",
-    "categories": ["Plot"],
+    "categories": [
+      "Plot"
+    ],
     "summary": "V marci 2017 sme oplotili celý pozemok.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/plot-stlpiky-na-pozemku.jpg",
     "gallery": [
-      { "src": "/images/events/plot-stlpiky-na-pozemku.jpg", "alt": "Drevené stĺpiky osadené okolo otvorenej časti pozemku" },
-      { "src": "/images/events/plot-stlpiky-pri-lese.jpg", "alt": "Rad drevených plotových stĺpikov pri okraji lesa" },
-      { "src": "/images/events/plot-hotove-pletivo.jpg", "alt": "Dokončený úsek pletivového plota medzi stromami" }
+      {
+        "src": "/images/events/plot-stlpiky-na-pozemku.jpg",
+        "alt": "Drevené stĺpiky osadené okolo otvorenej časti pozemku"
+      },
+      {
+        "src": "/images/events/plot-stlpiky-pri-lese.jpg",
+        "alt": "Rad drevených plotových stĺpikov pri okraji lesa"
+      },
+      {
+        "src": "/images/events/plot-hotove-pletivo.jpg",
+        "alt": "Dokončený úsek pletivového plota medzi stromami"
+      }
     ],
     "video": null,
     "status": "published"
@@ -136,15 +187,22 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Ovečky – vďačná prírodná kosačka",
-    "categories": ["Zvieratá"],
+    "categories": [
+      "Zvieratá"
+    ],
     "summary": "V apríli 2017 k nám pribudli ovečky – vďačná prírodná kosačka nášho pozemku.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/ovecky-na-luke.jpg",
     "gallery": [
-      { "src": "/images/events/ovecky-na-luke.jpg", "alt": "Stádo ovečiek s pastierskym psom na zelenej lúke" },
-      { "src": "/images/events/ovecky-v-tieni-chatky.jpg", "alt": "Ovečky a pes oddychujúce v tieni slameno-hlinenej chatky" }
+      {
+        "src": "/images/events/ovecky-na-luke.jpg",
+        "alt": "Stádo ovečiek s pastierskym psom na zelenej lúke"
+      },
+      {
+        "src": "/images/events/ovecky-v-tieni-chatky.jpg",
+        "alt": "Ovečky a pes oddychujúce v tieni slameno-hlinenej chatky"
+      }
     ],
     "video": null,
     "status": "published"
@@ -155,14 +213,19 @@
     "datePrecision": "day",
     "approximateDate": false,
     "title": "Sťahovanie",
-    "categories": ["Miľníky", "Rodina a život"],
+    "categories": [
+      "Miľníky",
+      "Rodina a život"
+    ],
     "summary": "6. augusta 2017 sme sa sťahovali.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/stahovanie.jpg",
     "gallery": [
-      { "src": "/images/events/stahovanie.jpg", "alt": "Sťahovanie rodiny 6. augusta 2017" }
+      {
+        "src": "/images/events/stahovanie.jpg",
+        "alt": "Sťahovanie rodiny 6. augusta 2017"
+      }
     ],
     "video": null,
     "status": "published"
@@ -173,29 +236,78 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Piecka",
-    "categories": ["Iné stavby"],
+    "categories": [
+      "Iné stavby"
+    ],
     "summary": "V júni 2018 sme postavili záhradnú piecku.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/piecka-zaklad-klenby.jpg",
     "gallery": [
-      { "src": "/images/events/piecka-zaklad-klenby.jpg", "alt": "Začiatok stavby vstupnej klenby piecky zo šamotových tehál" },
-      { "src": "/images/events/piecka-podlaha-a-klenba.jpg", "alt": "Rozložená podlaha a rozostavaná klenba piecky" },
-      { "src": "/images/events/piecka-kruhova-stena-01.jpg", "alt": "Prvé rady kruhovej tehlovej steny piecky" },
-      { "src": "/images/events/piecka-kruhova-stena-02.jpg", "alt": "Postupné murovanie kruhovej steny piecky" },
-      { "src": "/images/events/piecka-vstupna-klenba-01.jpg", "alt": "Vstupná klenba a rastúca kruhová stena piecky" },
-      { "src": "/images/events/piecka-vstupna-klenba-02.jpg", "alt": "Bočný pohľad na murovanú vstupnú klenbu piecky" },
-      { "src": "/images/events/piecka-otvorena-klenba-01.jpg", "alt": "Otvorený vstup do rozostavanej tehlovej piecky" },
-      { "src": "/images/events/piecka-otvorena-klenba-02.jpg", "alt": "Čelný pohľad na rozostavanú klenbu piecky" },
-      { "src": "/images/events/piecka-otvorena-klenba-03.jpg", "alt": "Ďalší čelný pohľad na vstupnú klenbu piecky" },
-      { "src": "/images/events/piecka-kruhova-stena-03.jpg", "alt": "Zadná časť kruhovej steny a vstupná klenba piecky" },
-      { "src": "/images/events/piecka-kruhova-stena-04.jpg", "alt": "Kruhová tehlová stena piecky pred uzavretím kupoly" },
-      { "src": "/images/events/piecka-kruhova-stena-05.jpg", "alt": "Ďalší pohľad na tehlovú stenu piecky pred uzavretím kupoly" },
-      { "src": "/images/events/piecka-izolacia-01.jpg", "alt": "Kupola piecky pokrytá tepelnou izoláciou a pletivom" },
-      { "src": "/images/events/piecka-izolacia-02.jpg", "alt": "Izolovaná kupola piecky pripravená na ďalšiu vrstvu" },
-      { "src": "/images/events/piecka-izolacia-03.jpg", "alt": "Ďalší pohľad na izolovanú kupolu piecky" },
-      { "src": "/images/events/piecka-izolacia-04.jpg", "alt": "Zadná strana kupoly piecky s tepelnou izoláciou" }
+      {
+        "src": "/images/events/piecka-zaklad-klenby.jpg",
+        "alt": "Začiatok stavby vstupnej klenby piecky zo šamotových tehál"
+      },
+      {
+        "src": "/images/events/piecka-podlaha-a-klenba.jpg",
+        "alt": "Rozložená podlaha a rozostavaná klenba piecky"
+      },
+      {
+        "src": "/images/events/piecka-kruhova-stena-01.jpg",
+        "alt": "Prvé rady kruhovej tehlovej steny piecky"
+      },
+      {
+        "src": "/images/events/piecka-kruhova-stena-02.jpg",
+        "alt": "Postupné murovanie kruhovej steny piecky"
+      },
+      {
+        "src": "/images/events/piecka-vstupna-klenba-01.jpg",
+        "alt": "Vstupná klenba a rastúca kruhová stena piecky"
+      },
+      {
+        "src": "/images/events/piecka-vstupna-klenba-02.jpg",
+        "alt": "Bočný pohľad na murovanú vstupnú klenbu piecky"
+      },
+      {
+        "src": "/images/events/piecka-otvorena-klenba-01.jpg",
+        "alt": "Otvorený vstup do rozostavanej tehlovej piecky"
+      },
+      {
+        "src": "/images/events/piecka-otvorena-klenba-02.jpg",
+        "alt": "Čelný pohľad na rozostavanú klenbu piecky"
+      },
+      {
+        "src": "/images/events/piecka-otvorena-klenba-03.jpg",
+        "alt": "Ďalší čelný pohľad na vstupnú klenbu piecky"
+      },
+      {
+        "src": "/images/events/piecka-kruhova-stena-03.jpg",
+        "alt": "Zadná časť kruhovej steny a vstupná klenba piecky"
+      },
+      {
+        "src": "/images/events/piecka-kruhova-stena-04.jpg",
+        "alt": "Kruhová tehlová stena piecky pred uzavretím kupoly"
+      },
+      {
+        "src": "/images/events/piecka-kruhova-stena-05.jpg",
+        "alt": "Ďalší pohľad na tehlovú stenu piecky pred uzavretím kupoly"
+      },
+      {
+        "src": "/images/events/piecka-izolacia-01.jpg",
+        "alt": "Kupola piecky pokrytá tepelnou izoláciou a pletivom"
+      },
+      {
+        "src": "/images/events/piecka-izolacia-02.jpg",
+        "alt": "Izolovaná kupola piecky pripravená na ďalšiu vrstvu"
+      },
+      {
+        "src": "/images/events/piecka-izolacia-03.jpg",
+        "alt": "Ďalší pohľad na izolovanú kupolu piecky"
+      },
+      {
+        "src": "/images/events/piecka-izolacia-04.jpg",
+        "alt": "Zadná strana kupoly piecky s tepelnou izoláciou"
+      }
     ],
     "video": null,
     "status": "published"
@@ -206,16 +318,27 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Stavba slameno-hlineného domu",
-    "categories": ["Miľníky", "Slameno-hlinený dom"],
+    "categories": [
+      "Miľníky",
+      "Slameno-hlinený dom"
+    ],
     "summary": "V marci 2019 sme začali stavať slameno-hlinený dom.",
-    "story": "",
     "featured": true,
     "location": "",
     "coverImage": "/images/events/dom-zaklady.jpg",
     "gallery": [
-      { "src": "/images/events/dom-zaklady.jpg", "alt": "Pripravené základy slameno-hlineného domu" },
-      { "src": "/images/events/dom-dreveny-krov.jpg", "alt": "Drevená konštrukcia a krov rozostavaného domu" },
-      { "src": "/images/events/dom-slamene-steny.jpg", "alt": "Slamené balíky ukladané do drevenej konštrukcie domu" }
+      {
+        "src": "/images/events/dom-zaklady.jpg",
+        "alt": "Pripravené základy slameno-hlineného domu"
+      },
+      {
+        "src": "/images/events/dom-dreveny-krov.jpg",
+        "alt": "Drevená konštrukcia a krov rozostavaného domu"
+      },
+      {
+        "src": "/images/events/dom-slamene-steny.jpg",
+        "alt": "Slamené balíky ukladané do drevenej konštrukcie domu"
+      }
     ],
     "video": null,
     "status": "published"
@@ -226,16 +349,26 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Naše kozy",
-    "categories": ["Zvieratá"],
+    "categories": [
+      "Zvieratá"
+    ],
     "summary": "V júni 2019 k nám pribudli kozy.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/nase-kozy-portret-zboku.jpg",
     "gallery": [
-      { "src": "/images/events/nase-kozy-portret-zboku.jpg", "alt": "Detail hnedej kozy s výraznými rohmi na zelenej pastvine" },
-      { "src": "/images/events/nase-kozy-portret-spredu.jpg", "alt": "Čelný portrét hnedej kozy s rohmi" },
-      { "src": "/images/events/nase-kozy-na-pastvine.jpg", "alt": "Hnedá koza stojaca na zelenej pastvine" }
+      {
+        "src": "/images/events/nase-kozy-portret-zboku.jpg",
+        "alt": "Detail hnedej kozy s výraznými rohmi na zelenej pastvine"
+      },
+      {
+        "src": "/images/events/nase-kozy-portret-spredu.jpg",
+        "alt": "Čelný portrét hnedej kozy s rohmi"
+      },
+      {
+        "src": "/images/events/nase-kozy-na-pastvine.jpg",
+        "alt": "Hnedá koza stojaca na zelenej pastvine"
+      }
     ],
     "video": null,
     "status": "published"
@@ -246,15 +379,22 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Výsadba vetrolamu z japonských topoľov",
-    "categories": ["Plot"],
+    "categories": [
+      "Plot"
+    ],
     "summary": "V apríli 2020 sme vysadili vetrolam z japonských topoľov.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/vetrolam-vysadbove-jamy.jpg",
     "gallery": [
-      { "src": "/images/events/vetrolam-vysadbove-jamy.jpg", "alt": "Rad pripravených výsadbových jám pre vetrolam na lúke" },
-      { "src": "/images/events/vetrolam-vysadene-topole.jpg", "alt": "Čerstvo vysadené japonské topole pozdĺž oplotenia" }
+      {
+        "src": "/images/events/vetrolam-vysadbove-jamy.jpg",
+        "alt": "Rad pripravených výsadbových jám pre vetrolam na lúke"
+      },
+      {
+        "src": "/images/events/vetrolam-vysadene-topole.jpg",
+        "alt": "Čerstvo vysadené japonské topole pozdĺž oplotenia"
+      }
     ],
     "video": null,
     "status": "published"
@@ -265,16 +405,26 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Výsadba ovocných kríkov",
-    "categories": ["Záhrada"],
+    "categories": [
+      "Záhrada"
+    ],
     "summary": "V apríli 2020 sme vysadili ovocné kríky.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/ovocne-kriky-sadenie.jpg",
     "gallery": [
-      { "src": "/images/events/ovocne-kriky-sadenie.jpg", "alt": "Rodinná výsadba ovocných kríkov na pozemku" },
-      { "src": "/images/events/ovocne-kriky-riadky.jpg", "alt": "Riadky čerstvo vysadených ovocných kríkov na lúke" },
-      { "src": "/images/events/ovocne-kriky-vysadba-z-dialky.jpg", "alt": "Pohľad na výsadbu ovocných kríkov naprieč pozemkom" }
+      {
+        "src": "/images/events/ovocne-kriky-sadenie.jpg",
+        "alt": "Rodinná výsadba ovocných kríkov na pozemku"
+      },
+      {
+        "src": "/images/events/ovocne-kriky-riadky.jpg",
+        "alt": "Riadky čerstvo vysadených ovocných kríkov na lúke"
+      },
+      {
+        "src": "/images/events/ovocne-kriky-vysadba-z-dialky.jpg",
+        "alt": "Pohľad na výsadbu ovocných kríkov naprieč pozemkom"
+      }
     ],
     "video": null,
     "status": "published"
@@ -285,18 +435,34 @@
     "datePrecision": "month",
     "approximateDate": false,
     "title": "Jazierko",
-    "categories": ["Jazierko"],
+    "categories": [
+      "Jazierko"
+    ],
     "summary": "V máji 2020 sme začali budovať jazierko.",
-    "story": "",
     "featured": false,
     "location": "",
     "coverImage": "/images/events/jazierko-vykop.jpg",
     "gallery": [
-      { "src": "/images/events/jazierko-vykop.jpg", "alt": "Bager hĺbiaci jamu pre jazierko pri fóliovníku" },
-      { "src": "/images/events/jazierko-vykop-hotovy.jpg", "alt": "Vyhĺbená jama budúceho jazierka" },
-      { "src": "/images/events/jazierko-folia.jpg", "alt": "Ukladanie ochrannej vrstvy a fólie do jazierka" },
-      { "src": "/images/events/jazierko-napustanie.jpg", "alt": "Prvé napúšťanie nového jazierka vodou" },
-      { "src": "/images/events/jazierko-napustene.jpg", "alt": "Napustené jazierko pri fóliovníku" }
+      {
+        "src": "/images/events/jazierko-vykop.jpg",
+        "alt": "Bager hĺbiaci jamu pre jazierko pri fóliovníku"
+      },
+      {
+        "src": "/images/events/jazierko-vykop-hotovy.jpg",
+        "alt": "Vyhĺbená jama budúceho jazierka"
+      },
+      {
+        "src": "/images/events/jazierko-folia.jpg",
+        "alt": "Ukladanie ochrannej vrstvy a fólie do jazierka"
+      },
+      {
+        "src": "/images/events/jazierko-napustanie.jpg",
+        "alt": "Prvé napúšťanie nového jazierka vodou"
+      },
+      {
+        "src": "/images/events/jazierko-napustene.jpg",
+        "alt": "Napustené jazierko pri fóliovníku"
+      }
     ],
     "video": null,
     "status": "published"
