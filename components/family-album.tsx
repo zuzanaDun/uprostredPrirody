@@ -9,6 +9,7 @@ import { Popover, PopoverContent, PopoverTitle, PopoverTrigger } from '@/compone
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { EventCardDialog } from './event-card-dialog';
 import type { StoryRecord } from '@/lib/stories';
+import { StoriesAlbum } from './stories-album';
 import { formatDate, RotatingEventMedia } from '@/components/timeline-story';
 import { albumColumns, albumPeriod, estateDuration } from '@/lib/album';
 import { AboutSlideshow } from '@/components/about-slideshow';
@@ -211,10 +212,7 @@ export function FamilyAlbum({ events, stories, initialNow, initialEventId }: { e
           </div>
         </TabsContent>
         <TabsContent value="stories" keepMounted className="album-stories">
-          <div className="story-cards">{stories.map(story => <a className="story-card" href={`/pribeh/${story.id}`} key={story.id}>
-            <img src={story.coverImage} alt={story.gallery.find(photo => photo.src === story.coverImage)?.alt || story.title} />
-            <div><h2>{story.title}</h2><p>{story.summary}</p><span>Čítať príbeh →</span></div>
-          </a>)}</div>
+          <StoriesAlbum stories={stories} />
         </TabsContent>
         <TabsContent value="about" keepMounted className="album-about-tab">
           <div className="album-toolbar album-about-toolbar"><h2 id="about-title">Za každým miestom sú <em>ľudia.</em></h2></div>
