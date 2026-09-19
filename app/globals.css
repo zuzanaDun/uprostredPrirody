@@ -463,6 +463,8 @@ body:has(.event-card-modal) [data-slot='dialog-overlay'] { background: rgba(8, 2
 .editorial-heading h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.08; margin: 1rem 0; }
 .editorial-story .detail-body { max-width: none; padding: 1rem clamp(1rem, 4vw, 3rem) 3rem; }
 .editorial-story .detail-body > p, .editorial-story .detail-body > h2 { max-width: 65ch; }
+.editorial-story .detail-body > ul { max-width: 65ch; margin: 0 0 1.15rem; padding-left: 1.5rem; font-family: Georgia, serif; font-size: 1.08rem; line-height: 1.85; color: #314a40; list-style: disc; }
+.editorial-story .detail-body > ul li { padding-left: .35rem; margin-bottom: .45rem; }
 .editorial-story .detail-body figure { margin: 2rem 0; min-width: 0; }
 .editorial-story .editorial-intro-image { margin-top: 1.25rem; }
 .editorial-story figure img { display: block; width: 100%; height: auto; }
