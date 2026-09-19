@@ -162,5 +162,39 @@
     ],
     "video": null,
     "status": "published"
+  },
+  {
+    "id": "nas-rodovy-statok",
+    "date": "2020-01-30",
+    "datePrecision": "day",
+    "approximateDate": false,
+    "title": "Náš RODový statok",
+    "categories": ["Rodový statok"],
+    "summary": "Rodový statok je miesto pre každého, kto sa chce radovať zo života, žiť slobodne a hlavne tvoriť.",
+    "story": "Rodový statok je miesto pre každého, chudobného, bohatého, chorého, zdravého, nešťastného, malého či veľkého, každého kto sa chce radovať zo života každý deň, žiť slobodne a hlavne tvoriť. Veď predurčenie človeka je ZDOKONALOVAŤ ŽIVOTNÝ PRIESTOR, tak poďme si ho spoločne vytvoriť a zdokonalovať.\n\nMyšlienku rodových statkov pre nás vymyslela Anastázia z kníh Vladimíra Megreho. Rodový statok je odpoveďou na všetky otázky. Riešite zdravú stravu, pohyb, slobodu, deti, zvieratá, prírodu a plnohodnotný život — tak jednoznačne začnite rodovým statkom.\n\nJe toho veľa čo by som chcela o rodovom statku povedať, ale najlepšie bude ak si prečítate knihy Vladimíra Megreho. Hlavné je že to bude váš kúsok vlasti, priestor lásky pre celú rodinu, váš kúsok pozemského raja.\n\nRodový statok = Zjednocujem celý svoj rod a umiestňujem ho na toto miesto. [kniha Anasta, Vladimír Megre]",
+    "featured": false,
+    "location": "",
+    "coverImage": "/images/stories/nas-rodovy-statok/jazierko.jpg",
+    "gallery": [],
+    "video": null,
+    "status": "published",
+    "author": "Zuzana Dunajčanová",
+    "layout": "editorial",
+    "content": [
+      {"type":"heading","text":"Očakávania"},
+      {"type":"paragraph","text":"Naše očakávania od rodového statku boli: sebestačnosť, hlavne potravinová, zdravie, slobodný život a veľa voľného času pre rodinu. Plnohodnotný život pre deti, ekologický dom, radosť z každého dňa a hlavne zbaviť sa nespokojnosti, ktorá je prejavom nezmyselného života."},
+      {"type":"paragraph","text":"Na RODovom statku je toľko podnetov, človek nemá žiadnu potrebu stále niekam chodiť a dačo hľadať."},
+      {"type":"heading","text":"Realita"},
+      {"type":"paragraph","text":"A teraz tu žijeme už tretí rok a sme veľmi spokojní. Máme zeleninovú záhradu, ovocné stromky sme už zasadili a každým rokom svoj priestor zdokonaľujeme."},
+      {"type":"paragraph","text":"Na začiatku sme chovali ovce, kozy, husy, kačky, mangalice a sliepky. Časom sme zistili, že to nie je nič pre nás. Naše deti naozaj behajú celé dni po vonku a hrajú sa s palicami, a to je február. Naše jediné hračky sú skladačky."},
+      {"type":"paragraph","text":"Bývame v slamenohlinenej chatke a začíname stavať dom. Každý deň je zaujímavý. Vždy sa tu niečo deje. Program nám robia hlavne zvieratká, domáce i lesné."},
+      {"type":"paragraph","text":"Negatívom je blato pri terénnych úpravách a voľne pasúcich kačkách. Pri veľkom pozemku treba prijať fakt, že nikdy nič nie je dokončené. Musíme sa obrniť trpezlivosťou a tešiť sa z drobných zmien."},
+      {"type":"heading","text":"Vitajte u nás"},
+      {"type":"paragraph","text":"Náš rodový statok vytvárame na približne 1,5 ha pozemku, ktorý sa nachádza v dedine. Na samotu sme nechceli hlavne kvôli deťom. Takto máme všetko po ruke a predsa súkromie. Našimi susedmi sú les, polia a poľná cesta."},
+      {"type":"imageAside","heading":"Slamenohlinená chatka","image":{"src":"/images/stories/nas-rodovy-statok/chatka.jpg","alt":"Slamenohlinená chatka pri jazierku","caption":"Naša chatička v zimnom šate. Má krásnu šindľovú strechu a drevené okná."},"paragraphs":["Má len 12 m² a ešte podkrovie, kde spíme."]},
+      {"type":"imageAside","heading":"Plot","image":{"src":"/images/stories/nas-rodovy-statok/plot.jpg","alt":"Plot okolo pozemku","caption":"Okolo celého pozemku je 700 m plotu."},"paragraphs":["Agátové koly s pletivom, dve bráničky a dve veľké brány. Plot sme začali robiť na jar, keď je zem mäkká."]},
+      {"type":"imageAside","heading":"Lúka","image":{"src":"/images/stories/nas-rodovy-statok/luka.jpg","alt":"Lúka rodového statku","caption":"Naša lúka, kde bude jazierko, slnečné pasce a vetrolam."},"paragraphs":["Využívali sme ju na pasenie kôz a oviec. Do budúcna tam pribudne jazierko a slnečné pasce."]},
+      {"type":"imageAside","heading":"Sad","image":{"src":"/images/stories/nas-rodovy-statok/sad.jpg","alt":"Ovocný sad v kvete","caption":"Zatiaľ je zasadených 56 rôznych druhov a odrôd."},"paragraphs":["Hore v kopci sme vyčistili džungľu a začali s výsadbou ovocných stromov. Chceme tam vytvoriť jedlý les, tvrdý sad aj hájik predkov."]}
+    ]
   }
 ]
