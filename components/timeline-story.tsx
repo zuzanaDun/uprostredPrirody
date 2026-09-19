@@ -181,6 +181,7 @@ export function EventStory({ event, standalone = false }: { event: StoryRecord; 
       </div>}
       <div className="detail-body">
         <p className="detail-lead">{event.summary}</p>
+        {event.layout === 'editorial' && event.coverImage && <figure className="editorial-intro-image"><img src={event.coverImage} alt={`Úvodná fotografia príbehu ${event.title}`} /></figure>}
         {event.story.split('\n\n').filter(Boolean).map((paragraph, index) => <p key={index}><InlineMarkup text={paragraph} /></p>)}
         {event.content?.map((block, index) => {
           if (block.type === 'imageRow') return <div className="article-image-row" key={index}>{block.images.map(image => <figure key={image.src}><img src={image.src} alt={image.alt} loading="lazy" /><figcaption>{image.caption}</figcaption></figure>)}</div>;
