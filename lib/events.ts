@@ -3,6 +3,7 @@ import rawEvents from '@/content/events.json';
 export type GalleryItem = { src: string; alt: string; caption?: string };
 export type VideoItem = { type: 'youtube' | 'local'; url: string; title: string; poster?: string };
 export type ContentBlock =
+  | { type: 'list'; items: string[] }
   | { type: 'imageRow'; images: GalleryItem[] }
   | { type: 'imageAside'; image: GalleryItem; heading: string; paragraphs: string[] }
   | { type: 'heading'; text: string }

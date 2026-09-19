@@ -182,11 +182,12 @@ export function EventStory({ event, standalone = false }: { event: StoryRecord; 
       <div className="detail-body">
         <p className="detail-lead">{event.summary}</p>
         {event.layout === 'editorial' && event.coverImage && <figure className="editorial-intro-image"><img src={event.coverImage} alt={`Úvodná fotografia príbehu ${event.title}`} /></figure>}
-        {event.story.split('\n\n').filter(Boolean).map((paragraph, index) => <p key={index}><InlineMarkup text={paragraph} /></p>)}
+        {event.story.split('\n\n').filter(Boolean).slice(event.id === 'nas-rodovy-statok' ? 1 : 0).map((paragraph, index) => paragraph.startsWith('Rodový statok =') ? <blockquote key={index}><InlineMarkup text={paragraph} /></blockquote> : <p key={index}><InlineMarkup text={paragraph} /></p>)}
         {event.content?.map((block, index) => {
           if (block.type === 'imageRow') return <div className="article-image-row" key={index}>{block.images.map(image => <figure key={image.src}><img src={image.src} alt={image.alt} loading="lazy" /><figcaption>{image.caption}</figcaption></figure>)}</div>;
           if (block.type === 'imageAside') return <section className="article-image-aside" key={index}><div><h2>{block.heading}</h2>{block.paragraphs.map((text, i) => <p key={i}><InlineMarkup text={text} /></p>)}</div><figure><img src={block.image.src} alt={block.image.alt} loading="lazy" /><figcaption>{block.image.caption}</figcaption></figure></section>;
           if (block.type === 'heading') return <h2 key={index}><InlineMarkup text={block.text} /></h2>;
+          if (block.type === 'list') return <ul key={index}>{block.items.map((item, itemIndex) => <li key={itemIndex}><InlineMarkup text={item} /></li>)}</ul>;
           if (block.type === 'quote') return <blockquote key={index}><InlineMarkup text={block.text} /></blockquote>;
           if (block.type === 'image') return <figure key={index}><PlaceholderMedia src={block.src} alt={block.alt} /><figcaption>{block.caption}</figcaption></figure>;
           return <p key={index}><InlineMarkup text={block.text} /></p>;
