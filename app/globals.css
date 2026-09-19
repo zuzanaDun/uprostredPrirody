@@ -295,31 +295,31 @@ footer .brand-mark, .direct-header .brand-mark { border-color: rgba(230,239,230,
 .album-about-toolbar h2 { margin: 0; font-size: clamp(1.25rem, 3vw, 1.75rem); line-height: 1.25; }
 .album-about-toolbar h2 em { color: #234b37; }
 .album-about-panel { overflow-y: auto; overflow-x: hidden; min-height: 0; }
-.album-about { display: grid; grid-template-areas: 'photos' 'story'; gap: 20px; width: 100%; margin: 0; padding: 0 16px 40px; isolation: isolate; }
-.album-about .about-copy { grid-area: story; position: relative; z-index: 2; max-width: 60ch; font-size: 1rem; }
+.album-about { display: grid; grid-template-areas: 'photos' 'story'; gap: 20px; width: 100%; margin: 0; padding: 0 0 40px; isolation: isolate; }
+.album-about .about-copy { grid-area: story; position: relative; z-index: 2; max-width: 60ch; margin-inline: 16px; min-width: 0; font-size: 1rem; }
 .album-about .about-copy > p { margin: 0 0 1.15em; line-height: 1.8; text-wrap: pretty; }
 .album-about .about-copy strong { color: #2c513e; font-weight: 600; }
 .album-about .about-opening { padding-bottom: 1rem; border-bottom: 1px solid #52765833; font-size: clamp(1.2rem, 1.8vw, 1.45rem); line-height: 1.6; }
 .about-personal-quote { margin: .75rem 0; padding: .2rem 0 .2rem 1.25rem; border-left: 2px solid #729169; }
 .about-personal-quote p { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.125rem, 1.8vw, 1.25rem); font-style: italic; line-height: 1.5; color: #2c513e; }
 .about-closing em { display: block; margin-top: .35rem; font-family: Georgia, 'Times New Roman', serif; font-size: 1.125rem; color: #52734a; }
-.about-slideshow { grid-area: photos; position: relative; isolation: isolate; margin: 0; height: clamp(320px, 60vh, 440px); min-width: 0; outline-offset: 4px; }
-.about-photo-layer { position: absolute; inset: 0 0 44px; }
+.about-slideshow { grid-area: photos; position: relative; isolation: isolate; margin: 0; aspect-ratio: 4 / 3; min-width: 0; overflow: hidden; outline-offset: -3px; }
+.about-photo-layer { position: absolute; inset: 0; }
 .about-photo-layer.is-entering { animation: about-photo-fade 1.2s ease-in-out both; }
-.about-photo { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; }
+.about-photo { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; }
 .about-photo-atmosphere { position: absolute; inset: 0 -16px -72px; overflow: hidden; opacity: .35; mask-image: linear-gradient(to bottom, #000 60%, transparent); pointer-events: none; }
 .about-photo-atmosphere img { width: 100%; height: 100%; object-fit: cover; filter: blur(24px); opacity: .65; }
-.about-photo-controls { position: absolute; bottom: 0; inset-inline: 0; display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; z-index: 3; }
-.about-photo-controls span { min-width: 54px; text-align: center; font-size: .875rem; color: #365e40; font-variant-numeric: tabular-nums; }
-.about-photo-controls button { background: rgba(237,243,233,.82); }
+.about-photo-controls { position: absolute; bottom: 0; inset-inline: 0; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 20px 8px 8px; background: linear-gradient(transparent, rgba(15,35,23,.78)); color: #fff; z-index: 3; }
+.about-photo-controls span { min-width: 54px; text-align: center; font-size: .875rem; color: #fff; font-variant-numeric: tabular-nums; }
+.about-photo-controls button { min-width: 44px; min-height: 44px; color: #fff; background: rgba(15,35,23,.4); }
 .about-photo-controls button:focus-visible, .about-slideshow:focus-visible { outline: 2px solid #426648; }
 .about-photo-error { position: absolute; inset: auto 16px 52px; z-index: 3; padding: 8px; background: var(--background); font-size: .875rem; }
 @keyframes about-photo-fade { from { opacity: 0; } to { opacity: 1; } }
 @media (min-width: 900px) {
   .album-toolbar.album-about-toolbar { padding-inline: 32px; }
   .album-about { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: 'story photos'; column-gap: 32px; padding: 0 32px 40px; }
-  .about-slideshow { position: sticky; top: 0; align-self: start; height: min(680px, calc(var(--about-available-height, 75dvh) - 24px)); }
-  .about-photo-layer { inset-inline: -160px -32px; mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,.08) 80px, rgba(0,0,0,.4) 160px, #000 280px); }
+  .album-about .about-copy { margin-inline: 0; }
+  .about-slideshow { align-self: stretch; aspect-ratio: auto; }
   .about-photo { object-fit: cover; object-position: center; }
   .about-photo-atmosphere { display: none; }
 }

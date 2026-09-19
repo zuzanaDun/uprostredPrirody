@@ -225,17 +225,8 @@ export function FamilyAlbum({ events, stories, initialNow, initialEventId }: { e
 }
 
 function AboutUs({ active }: { active: boolean }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  useLayoutEffect(() => {
-    const section = sectionRef.current, panel = section?.parentElement;
-    if (!section || !panel || !active) return;
-    const measure = () => section.style.setProperty('--about-available-height', `${panel.clientHeight}px`);
-    const observer = new ResizeObserver(measure);
-    measure(); observer.observe(panel);
-    return () => observer.disconnect();
-  }, [active]);
   return (
-<section ref={sectionRef} id="o-nas" className="album-about" aria-labelledby="about-title">
+<section id="o-nas" className="album-about" aria-labelledby="about-title">
         <AboutSlideshow active={active} />
         <div className="about-copy">
           <p className="about-opening">Kde bolo, tam bolo, uprostred prenádhernej prírody žil raz jeden malý chlapec v malom domčeku…</p>
