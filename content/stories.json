@@ -1,4 +1,134 @@
 [
+{
+  "id": "o-slamenohlinenom-dome",
+  "date": "2019-02-23",
+  "datePrecision": "day",
+  "approximateDate": false,
+  "title": "O slamenohlinenom dome",
+  "categories": [
+    "Slameno-hlinený dom"
+  ],
+  "author": "Zuzana Dunajčanová",
+  "layout": "editorial",
+  "summary": ".. hlina, slama, drevo .. verili by ste že sa z toho dá postaviť dom? Pasívny, lacný, zdravý, ekologický.",
+  "story": "",
+  "featured": false,
+  "location": "",
+  "coverImage": "/images/stories/o-slamenohlinenom-dome/dom.jpg",
+  "gallery": [],
+  "video": null,
+  "status": "published",
+  "content": [
+    {
+      "type": "image",
+      "src": "/images/stories/o-slamenohlinenom-dome/dom.jpg",
+      "alt": "Slamenohlinený dom s drevenými šindľami a verandou"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ide o slamenohlinený dom, vskratke drevená konštrukcia, steny zo slamených balíkov na ktoré je nanesená hlinená omietka. Strechu a podlahu môžete riešiť ako moderné domy, ideálne v ekologickom duchu. My používame na zateplenie ovčiu vlnu, na strechu drevené šindle."
+    },
+    {
+      "type": "paragraph",
+      "text": "Spolu s manželom sme vystavili moderný pasívny dom a slamenohlinenú chatku. V obidvoch domoch sme bývali 3 roky a vieme to teda porovnať. A jednoznačne odporúčame slamenohlinený dom. Je hlavne zdravý a ekologický. Lacný je ak si ho postavíte svojpomocne. Je pracný ale to bol aj ten moderný. Moderný má určite výhodu v tom že vám pomôže akákoľvek stavebná firma alebo murár. So slamenohlineným má málo ľudí skúsenosti ale už existujú firmy ktoré vám ho postavia."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ide o svojpomocnú stavbu, všetko robíme ja s manželom a s pomocou celej rodiny. Ak vás to zaujíma sledujte môj blog kde sa budem snažiť popísať postup stavby našej chatky a domu."
+    },
+    {
+      "type": "paragraph",
+      "text": "Slamenohlinený dom - hrubá stavba"
+    },
+    {
+      "type": "paragraph",
+      "text": "Slamenohlinená chatka"
+    },
+    {
+      "type": "heading",
+      "text": "Pasívny"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hrúbka steny slamenohlineného domu je približne 50cm, ešte kvalitne zaizolujte podlahu a strechu ovčou vlnou a veľmi precízne zabezpečte aby nikde nefúkalo, teda žiadne tepelné mosty."
+    },
+    {
+      "type": "paragraph",
+      "text": "Teplo či chládok ostanú vo vnútry, hlinené omietky akumulujú teplo i vlhkosť."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pasívnym domom či už moderným alebo slameným ušetríte veľa energií, čo sa prejaví v peňaženke a šetrení prírody."
+    },
+    {
+      "type": "imageRow",
+      "images": [
+        {
+          "src": "/images/stories/o-slamenohlinenom-dome/stena.jpg",
+          "alt": "Hlinená stena chatky s hlbokým okenným otvorom",
+          "caption": "Hrúbka steny 50cm – záleží to samazrejme od rozmerov vašich balíkov"
+        },
+        {
+          "src": "/images/stories/o-slamenohlinenom-dome/vlna.jpg",
+          "alt": "Strecha chatky izolovaná ovčou vlnou",
+          "caption": "Ovčia vlna – strecha na slamenohlinenej chatke izolovaná ovčou vlnou"
+        }
+      ]
+    },
+    {
+      "type": "imageAside",
+      "heading": "Lacný",
+      "image": {
+        "src": "/images/stories/o-slamenohlinenom-dome/svojpomocne.jpg",
+        "alt": "Nanášanie hlinenej omietky svojpomocne",
+        "caption": "Svojpomocne – lacný ak si ho vystavíte sami"
+      },
+      "paragraphs": [
+        "V prípade ak ste zručný a postavíte si takýto domčak sami - svojpomocne, budete milo prekvapený cenou materiálov. Drevo na konštrukciu narezané na píle stojí pár tisíc eur, slamené balíky za pár stoviek. Šindlovú strechu z alpského šindla a hrubú stavbu máte hotovú za jedno leto za pár tisícok. Pozrite môj blog, kde vám ukážem naše dva hlinenoslamené domčeky.",
+        "A to je len bonus na začiatok. Starostlivosť o takýto dom vám tiež ušetrí nemálo peňazí s porovnaním moderného. Omietky si každý vie opraviť sám, vymeniť šindel je tiež nenáročné."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Zdravý"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hlinené omietky a drevo sú prírodné materiály, neuvoľňujú sa z nich nežiaduce plyny. Hlinené omietky regulujú vlhkosť, o tom sme sa presvedčili aj v našej slamenohlinenej chatke."
+    },
+    {
+      "type": "heading",
+      "text": "Ekologický"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sto rokov prešlo ako \"voda\", a moje pravnúčatko žije na našom rodovom statku. Rozhodne sa postaviť svoj vlastný dom zo stromov, ktoré sme pre neho zasadili. Náš storočný dom treba zbúrať aby na pôvodných základoch mohol stáť nový."
+    },
+    {
+      "type": "paragraph",
+      "text": "Po týždni práci na rozobratí starého domu na nás s vďačnosťou pravnúča spomína. Na jednej kope drevo, na druhej omietky so slamou. Po 100 rokoch dom poslúži ako palivové drevo a základ do kompostu."
+    },
+    {
+      "type": "paragraph",
+      "text": "O tom že je tento dom ekologický už netreba viac dokazovať. Dokonca aj permakultúrny - základné materiály hlina, drevo a slama sú lokálne."
+    },
+    {
+      "type": "imageRow",
+      "images": [
+        {
+          "src": "/images/stories/o-slamenohlinenom-dome/slama-drevo.jpg",
+          "alt": "Drevená konštrukcia chatky vyplnená slamenými balíkmi",
+          "caption": "Slama & Drevo – hlavný stavebný materiál"
+        },
+        {
+          "src": "/images/stories/o-slamenohlinenom-dome/hlina.jpg",
+          "alt": "Vedrá s hlinou rozmiešanou vo vode",
+          "caption": "Hlina – hlina s vodou pripravená na penetráciu"
+        }
+      ]
+    }
+  ]
+},
   {
     "id": "ako-sa-zacala-moja-cesta",
     "date": "2014-01-01",

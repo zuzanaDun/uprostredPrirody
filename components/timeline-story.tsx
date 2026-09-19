@@ -169,8 +169,8 @@ export function EventStory({ event, standalone = false }: { event: StoryRecord; 
   };
 
   return (
-    <article className={standalone ? 'event-story standalone-story' : 'event-story'}>
-      <div className="detail-cover">
+    <article className={`${standalone ? 'event-story standalone-story' : 'event-story'} ${event.layout === 'editorial' ? 'editorial-story' : ''}`}>
+      {event.layout === 'editorial' ? <header className="editorial-heading"><p>{event.author} · {formatDate(event, true)}</p><h1>{event.title}</h1></header> : <div className="detail-cover">
         <PlaceholderMedia src={event.coverImage} alt={`Titulná fotografia udalosti ${event.title}`} />
         <div className="detail-cover-shade" />
         <div className="detail-cover-copy">
@@ -178,11 +178,13 @@ export function EventStory({ event, standalone = false }: { event: StoryRecord; 
           <h1>{event.title}</h1>
           <p>{formatDate(event, true)}{event.location ? ` · ${event.location}` : ''}</p>
         </div>
-      </div>
+      </div>}
       <div className="detail-body">
         <p className="detail-lead">{event.summary}</p>
-        {event.story.split('\n\n').map((paragraph, index) => <p key={index}><InlineMarkup text={paragraph} /></p>)}
+        {event.story.split('\n\n').filter(Boolean).map((paragraph, index) => <p key={index}><InlineMarkup text={paragraph} /></p>)}
         {event.content?.map((block, index) => {
+          if (block.type === 'imageRow') return <div className="article-image-row" key={index}>{block.images.map(image => <figure key={image.src}><img src={image.src} alt={image.alt} loading="lazy" /><figcaption>{image.caption}</figcaption></figure>)}</div>;
+          if (block.type === 'imageAside') return <section className="article-image-aside" key={index}><div><h2>{block.heading}</h2>{block.paragraphs.map((text, i) => <p key={i}><InlineMarkup text={text} /></p>)}</div><figure><img src={block.image.src} alt={block.image.alt} loading="lazy" /><figcaption>{block.image.caption}</figcaption></figure></section>;
           if (block.type === 'heading') return <h2 key={index}><InlineMarkup text={block.text} /></h2>;
           if (block.type === 'quote') return <blockquote key={index}><InlineMarkup text={block.text} /></blockquote>;
           if (block.type === 'image') return <figure key={index}><PlaceholderMedia src={block.src} alt={block.alt} /><figcaption>{block.caption}</figcaption></figure>;
