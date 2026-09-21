@@ -174,7 +174,7 @@
     "story": "Rodový statok je miesto pre každého, chudobného, bohatého, chorého, zdravého, nešťastného, malého či veľkého, každého kto sa chce radovať zo života každý deň, žiť slobodne a hlavne tvoriť. Veď predurčenie človeka je ZDOKONALOVAŤ ŽIVOTNÝ PRIESTOR, tak poďme si ho spoločne vytvoriť a zdokolanovať.\n\nMyšlienku rodových statkov pre nás vymyslela Anastázia z kník Vladimíra Megreho. Krásny popis je na stránke Jaroslava Slobodu Princip rodových statkov a na stránke rodovestatky.com. Rodový statok je odpoveďou na všetky otázky, ako hovorieva môj manžel. Riešite zdravú stravu, pohyb, slobodu, deti, zvieratá, prírodu, plnohodnotný život tak jednoznačne začnite rodovým statkom a dostane sa k vám všeko čo potrebujete.\n\nJe toho veľa čo by som chcela o rodovom statku povedať, ale najlepšie bude ak si prečítate knihy Vladimíra Megreho. Hlavné je že to bude váš kúsok vlasti, priestor lásky pre celú rodinu, váš kúsok pozemského raja.\n\nRodový statok = Zjednocujem celý svoj rod a umiestňujem ho na toto miesto [kniha Anasta Vladimír Megre]",
     "featured": false,
     "location": "",
-    "coverImage": "/images/stories/nas-rodovy-statok/jazierko.jpg",
+    "coverImage": "/images/stories/nas-rodovy-statok/jazierko-uvod.jpg",
     "gallery": [],
     "video": null,
     "status": "published",
@@ -196,9 +196,9 @@
       {"type":"paragraph","text":"Pri takom veľkom pozemku treba prijať fakt že nikdy nič nie je dokončené, či to všeobecne v živote? Aspoň prvých pár rôčkov kým vyrastie ovocný sad, kríčky, dom, trávička, chodníky a my, sa musíme obrniť trpezlivosťou a tešiť sa z drobých zmien."},
       {"type":"heading","text":"Vitajte u nás"},
       {"type":"paragraph","text":"Náš rodový statok vytvárame na približne 1.5ha pozemku, ktorý sa nachádza v dedine. Na samotu sme nechceli hlavne kvôli deťom. Takto máme všetko po ruke a predsa súkromie. V zime keď opadnú listy tak vidíme hornú ulicu ale cez leto to vyzerá ako na samote. Našimi susedmi sú les, polia a poľná cesta, je to super. Pozemok je opticky rozdelený na dve časti a to lúka a sad ktorý je v kopci. Tak nazrite k nám:"},
-      {"type":"imageAside","heading":"Slamenohlinená chatka","image":{"src":"/images/stories/nas-rodovy-statok/chatka.jpg","alt":"Slamenohlinená chatka pri jazierku","caption":"Naša chatička v zimnom šate. Má krásnu šindľovú strechu a drevené okná."},"paragraphs":["Má len 12 m² a ešte podkrovie, kde spíme."]},
+      {"type":"imageAside","heading":"Slamenohlinená chatka","image":{"src":"/images/stories/nas-rodovy-statok/chatka-zima.jpg","alt":"Slamenohlinená chatka zasnežená v zime","caption":"Naša chatička v zimnom šate. Má krásnu šindľovú strechu a drevené okná."},"paragraphs":["Má len 12 m² a ešte podkrovie, kde spíme."]},
       {"type":"imageAside","heading":"Plot","image":{"src":"/images/stories/nas-rodovy-statok/plot.jpg","alt":"Plot okolo pozemku","caption":"Okolo celého pozemku je 700 m plotu."},"paragraphs":["Agátové koly s pletivom, dve bráničky a dve veľké brány. Plot sme začali robiť na jar, keď je zem mäkká."]},
-      {"type":"imageAside","heading":"Lúka","image":{"src":"/images/stories/nas-rodovy-statok/luka.jpg","alt":"Lúka rodového statku","caption":"Naša lúka, kde bude jazierko, slnečné pasce a vetrolam."},"paragraphs":["Využívali sme ju na pasenie kôz a oviec. Do budúcna tam pribudne jazierko a slnečné pasce."]},
+      {"type":"imageAside","heading":"Lúka","image":{"src":"/images/stories/nas-rodovy-statok/luka.avif","alt":"Kozy na lúke rodového statku","caption":"Naša lúka, kde bude jazierko, slnečné pasce a vetrolam."},"paragraphs":["Využívali sme ju na pasenie kôz a oviec. Do budúcna tam pribudne jazierko a slnečné pasce."]},
       {"type":"imageAside","heading":"Sad","image":{"src":"/images/stories/nas-rodovy-statok/sad.jpg","alt":"Ovocný sad v kvete","caption":"Zatiaľ je zasadených 56 rôznych druhov a odrôd."},"paragraphs":["Hore v kopci sme vyčistili džungľu a začali s výsadbou ovocných stromov. Chceme tam vytvoriť jedlý les, tvrdý sad aj hájik predkov."]}
     ]
   }
